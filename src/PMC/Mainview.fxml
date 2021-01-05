@@ -11,81 +11,81 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane minHeight="400.0" minWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PMC.Controller">
-   <center>
-      <HBox prefHeight="378.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-         <children>
-            <TableView fx:id="genreList" minWidth="250.0" prefHeight="380.0" prefWidth="250.0">
-              <columns>
-                <TableColumn fx:id="genreNameColumn" editable="false" prefWidth="181.0" text="Genre" />
-                <TableColumn fx:id="genreMoviesColumn" editable="false" prefWidth="68.0" text="Movies" />
-              </columns>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </TableView>
-            <TableView fx:id="movieList" prefHeight="378.0" prefWidth="400.0">
-              <columns>
-                <TableColumn fx:id="movieImdbColumn" editable="false" prefWidth="40.0" text="IMDB" />
-                <TableColumn fx:id="movieRatingColumn" editable="false" prefWidth="48.0" text="Rating" />
-                  <TableColumn fx:id="movieNameColumn" editable="false" prefWidth="221.0" text="Movie" />
-                  <TableColumn fx:id="lastViewedColumn" editable="false" prefWidth="85.0" text="Last Viewed" />
-              </columns>
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </TableView>
-         </children>
-         <BorderPane.margin>
-            <Insets left="20.0" />
-         </BorderPane.margin>
-      </HBox>
-   </center>
-   <bottom>
-      <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <ButtonBar buttonMinWidth="60.0" prefHeight="50.0" prefWidth="250.0">
-              <buttons>
-                <Button fx:id="createGenre" mnemonicParsing="false" onAction="#handleCreateGenre" text="Create..." />
-                  <Button fx:id="deleteGenre" mnemonicParsing="false" onAction="#handleDeleteGenre" text="Delete" />
-                  <Button fx:id="editGenre" mnemonicParsing="false" onAction="#handleEditGenre" text="Edit" />
-              </buttons>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-            </ButtonBar>
-            <ButtonBar buttonMinWidth="60.0" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="410.0">
-               <buttons>
-                  <Button fx:id="createMovie" mnemonicParsing="false" onAction="#handleCreateMovie" text="Create..." />
-                  <Button fx:id="deleteMovie" mnemonicParsing="false" onAction="#handleDeleteMovie" text="Delete" />
-                  <Button fx:id="editMovie" mnemonicParsing="false" onAction="#handleEditMovie" text="Edit" />
-               </buttons>
-            </ButtonBar>
-         </children>
-      </HBox>
-   </bottom>
-   <top>
-      <HBox BorderPane.alignment="CENTER">
-         <children>
-            <Label minWidth="250.0" text="Genre:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label text="Movie:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="20.0" top="20.0" />
-         </BorderPane.margin>
-      </HBox>
-   </top>
+    <center>
+        <HBox prefHeight="378.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+            <children>
+                <TableView fx:id="genreList" minWidth="250.0" prefHeight="380.0" prefWidth="250.0">
+                    <columns>
+                        <TableColumn fx:id="genreNameColumn" editable="false" prefWidth="181.0" text="Genre" />
+                        <TableColumn fx:id="genreMoviesColumn" editable="false" prefWidth="68.0" text="Movies" />
+                    </columns>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <HBox.margin>
+                        <Insets right="20.0" />
+                    </HBox.margin>
+                </TableView>
+                <TableView fx:id="movieList" prefHeight="378.0" prefWidth="400.0">
+                    <columns>
+                        <TableColumn fx:id="movieImdbColumn" editable="false" prefWidth="40.0" text="IMDB" />
+                        <TableColumn fx:id="movieRatingColumn" editable="false" prefWidth="48.0" text="Rating" />
+                        <TableColumn fx:id="movieNameColumn" editable="false" prefWidth="221.0" text="Movie" />
+                        <TableColumn fx:id="lastViewedColumn" editable="false" prefWidth="85.0" text="Last Viewed" />
+                    </columns>
+                    <HBox.margin>
+                        <Insets right="20.0" />
+                    </HBox.margin>
+                </TableView>
+            </children>
+            <BorderPane.margin>
+                <Insets left="20.0" />
+            </BorderPane.margin>
+        </HBox>
+    </center>
+    <bottom>
+        <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <ButtonBar buttonMinWidth="60.0" prefHeight="50.0" prefWidth="250.0">
+                    <buttons>
+                        <Button fx:id="createGenre" mnemonicParsing="false" onAction="#handleCreateGenre" text="Create..." />
+                        <Button fx:id="deleteGenre" mnemonicParsing="false" onAction="#handleDeleteGenre" text="Delete" />
+                        <Button fx:id="editGenre" mnemonicParsing="false" onAction="#handleEditGenre" text="Edit" />
+                    </buttons>
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+                </ButtonBar>
+                <ButtonBar buttonMinWidth="60.0" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="410.0">
+                    <buttons>
+                        <Button fx:id="createMovie" mnemonicParsing="false" onAction="#handleCreateMovie" text="Create..." />
+                        <Button fx:id="deleteMovie" mnemonicParsing="false" onAction="#handleDeleteMovie" text="Delete" />
+                        <Button fx:id="editMovie" mnemonicParsing="false" onAction="#handleEditMovie" text="Edit" />
+                    </buttons>
+                </ButtonBar>
+            </children>
+        </HBox>
+    </bottom>
+    <top>
+        <HBox BorderPane.alignment="CENTER">
+            <children>
+                <Label minWidth="250.0" text="Genre:">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label text="Movie:">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+                </Label>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="20.0" top="20.0" />
+            </BorderPane.margin>
+        </HBox>
+    </top>
 </BorderPane>
