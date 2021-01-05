@@ -10,15 +10,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane minHeight="400.0" minWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PMC.Controller">
+<BorderPane minHeight="400.0" minWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PMC.Controller">
    <center>
       <HBox prefHeight="378.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="genreList" prefHeight="380.0" prefWidth="250.0">
+            <TableView fx:id="genreList" minWidth="250.0" prefHeight="380.0" prefWidth="250.0">
               <columns>
-                <TableColumn fx:id="genreNameColumn" editable="false" prefWidth="170.0" text="Genre" />
-                <TableColumn fx:id="genreMoviesColumn" editable="false" prefWidth="61.0" text="Movies" />
+                <TableColumn fx:id="genreNameColumn" editable="false" prefWidth="181.0" text="Genre" />
+                <TableColumn fx:id="genreMoviesColumn" editable="false" prefWidth="68.0" text="Movies" />
               </columns>
                <opaqueInsets>
                   <Insets />
@@ -27,11 +26,12 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </TableView>
-            <TableView fx:id="movieList" prefHeight="400.0" prefWidth="380.0">
+            <TableView fx:id="movieList" prefHeight="378.0" prefWidth="400.0">
               <columns>
-                <TableColumn fx:id="movieImdbColumn" editable="false" prefWidth="48.0" text="IMDB" />
-                <TableColumn fx:id="movieRatingColumn" editable="false" prefWidth="52.0" text="Rating" />
-                  <TableColumn fx:id="movieNameColumn" editable="false" prefWidth="259.0" text="Movie" />
+                <TableColumn fx:id="movieImdbColumn" editable="false" prefWidth="40.0" text="IMDB" />
+                <TableColumn fx:id="movieRatingColumn" editable="false" prefWidth="48.0" text="Rating" />
+                  <TableColumn fx:id="movieNameColumn" editable="false" prefWidth="221.0" text="Movie" />
+                  <TableColumn fx:id="lastViewedColumn" editable="false" prefWidth="85.0" text="Last Viewed" />
               </columns>
                <HBox.margin>
                   <Insets right="20.0" />
@@ -52,8 +52,11 @@
                   <Button fx:id="deleteGenre" mnemonicParsing="false" onAction="#handleDeleteGenre" text="Delete" />
                   <Button fx:id="editGenre" mnemonicParsing="false" onAction="#handleEditGenre" text="Edit" />
               </buttons>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
             </ButtonBar>
-            <ButtonBar buttonMinWidth="60.0" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="380.0">
+            <ButtonBar buttonMinWidth="60.0" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="410.0">
                <buttons>
                   <Button fx:id="createMovie" mnemonicParsing="false" onAction="#handleCreateMovie" text="Create..." />
                   <Button fx:id="deleteMovie" mnemonicParsing="false" onAction="#handleDeleteMovie" text="Delete" />
@@ -75,6 +78,9 @@
                <font>
                   <Font size="18.0" />
                </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
             </Label>
          </children>
          <BorderPane.margin>
