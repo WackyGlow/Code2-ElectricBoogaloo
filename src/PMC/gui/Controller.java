@@ -1,8 +1,16 @@
 package PMC.gui;
 
+import PMC.be.Movie;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
+
+
 public class Controller {
+
+    private final ObservableList<Movie> allMovies = FXCollections.observableArrayList();
+
     public void handleCreateGenre(ActionEvent actionEvent) {
     }
 
