@@ -13,6 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("gui/Mainview.fxml"));
         primaryStage.setTitle("Movie Player 2: Electric Boogaloo");
         primaryStage.setScene(new Scene(root, 700, 400));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

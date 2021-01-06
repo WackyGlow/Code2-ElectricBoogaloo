@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane minHeight="100.0" minWidth="310.0" prefHeight="120.0" prefWidth="225.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PMC.gui.NewGenreViewController">
+    <center>
+        <VBox maxHeight="150.0" prefHeight="200.0" prefWidth="310.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Name:">
+                            <HBox.margin>
+                                <Insets right="10.0" top="3.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="newGenreName" minWidth="180.0">
+                            <HBox.margin>
+                                <Insets right="20.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+            <padding>
+                <Insets top="30.0" />
+            </padding>
+        </VBox>
+    </center>
+    <bottom>
+        <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <buttons>
+                <Button fx:id="newGenreCreate" mnemonicParsing="false" onAction="#handleNewGenreCreate" text="Create" />
+                <Button fx:id="newGenreCancel" mnemonicParsing="false" onAction="#handleNewGenreCancel" text="Cancel" />
+            </buttons>
+            <BorderPane.margin>
+                <Insets bottom="5.0" right="20.0" />
+            </BorderPane.margin>
+        </ButtonBar>
+    </bottom>
+</BorderPane>
