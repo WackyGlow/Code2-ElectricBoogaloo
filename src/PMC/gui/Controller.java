@@ -1,5 +1,8 @@
 package PMC.gui;
 
+import PMC.be.Movie;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,6 +55,9 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+
+    private final ObservableList<Movie> allMovies = FXCollections.observableArrayList();
 
     public void handleCreateGenre(ActionEvent actionEvent) {
         try {

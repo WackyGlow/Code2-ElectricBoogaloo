@@ -11,7 +11,12 @@ public class Movie {
     private int id;
 
 public Movie(String name,float imdbRating,float rating,String filePath,String lastWatched, int id){
-
+    this.name = name;
+    this.filePath = filePath;
+    this.id = id;
+    this.imdbRating = imdbRating;
+    this.rating = rating;
+    this.lastWatched = lastWatched;
 }
 
     public String getName() {
