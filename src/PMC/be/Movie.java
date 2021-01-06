@@ -10,7 +10,7 @@ public class Movie {
     private String lastWatched;
     private int id;
 
-public Movie(String name,float imdbRating,float rating,String filePath,String lastWatched){
+public Movie(String name,float imdbRating,float rating,String filePath,String lastWatched, int id){
 
 }
 
