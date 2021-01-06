@@ -1,12 +1,13 @@
 package PMC.dal;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class JDBCConnectionPool extends ObjectPool<Connection>{
+public class JDBCConnectionPool extends ObjectPool<Connection>
+{
+
     private static JDBCConnectionPool INSTANCE;
     private final DatabaseConnector connectionProvider;
 
@@ -59,4 +60,5 @@ public class JDBCConnectionPool extends ObjectPool<Connection>{
             e.printStackTrace();
         }
     }
+
 }

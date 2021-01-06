@@ -49,6 +49,7 @@ public class MovieDAO {
             st.setFloat(3,rating);
             st.setString(4,filepath);
             st.setString(5,lastWatched);
+            st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
             int id = 0;
             if (rs.next()){
