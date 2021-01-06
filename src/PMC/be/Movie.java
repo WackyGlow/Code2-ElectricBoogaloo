@@ -10,8 +10,8 @@ public class Movie {
     private String lastWatched;
     private int id;
 
-public Movie(String name,float imdbRating,float rating,String filePath,String lastWatched,int id){
-    //File film = new File(filePath);
+public Movie(String name,float imdbRating,float rating,String filePath,String lastWatched){
+
 }
 
     public String getName() {
