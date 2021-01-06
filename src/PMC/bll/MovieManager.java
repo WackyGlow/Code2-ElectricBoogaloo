@@ -20,5 +20,13 @@ public void playMovie(String path) throws IOException {
 public void editName(Movie movie, String name){
     movie.setName(name);
 }
-
+public void editImdbrating(Movie movie, float rating){
+    movie.setImdbRating(rating);
+}
+public void editRating(Movie movie, float rating){
+    movie.setRating(rating);
+}
+public void editFilePath(Movie movie, String path){
+    movie.setFilePath(path);
+}
 }
