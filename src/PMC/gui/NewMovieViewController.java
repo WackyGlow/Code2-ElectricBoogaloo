@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -19,9 +20,12 @@ import java.util.ResourceBundle;
 
 public class NewMovieViewController implements Initializable {
 
-    public DatePicker lastViewed;
     private MovieModel movieModel;
 
+    @FXML
+    public DatePicker lastViewed;
+    @FXML
+    public ComboBox newMovieGenre;
     @FXML
     public Button newMovieCancel;
     @FXML
@@ -82,5 +86,8 @@ public class NewMovieViewController implements Initializable {
     }
 
     public void handleLastViewed(ActionEvent actionEvent) {
+    }
+
+    public void handleNewMovieGenre(ActionEvent actionEvent) {
     }
 }

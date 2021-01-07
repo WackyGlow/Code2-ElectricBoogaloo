@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -10,9 +11,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="210.0" minWidth="310.0" prefHeight="180.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PMC.gui.NewMovieViewController">
+<BorderPane minHeight="250.0" minWidth="310.0" prefHeight="250.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PMC.gui.NewMovieViewController">
    <center>
-      <VBox maxHeight="150.0" prefHeight="200.0" prefWidth="310.0" BorderPane.alignment="CENTER">
+      <VBox maxHeight="220.0" prefHeight="220.0" prefWidth="310.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="200.0">
                <children>
@@ -89,7 +90,7 @@
                         <Insets right="10.0" top="3.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="newMovieFilepath" maxWidth="150.0" minWidth="151.0">
+                  <TextField fx:id="newMovieFilepath" editable="false" maxWidth="150.0" minWidth="151.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -100,13 +101,30 @@
                      </HBox.margin>
                   </Button>
                </children>
+               <VBox.margin>
+                  <Insets bottom="3.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="144.0" prefHeight="30.0" prefWidth="200.0">
+               <children>
+                  <Label text="Genre:">
+                     <HBox.margin>
+                        <Insets right="10.0" top="3.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ComboBox fx:id="newMovieGenre" minWidth="180.0" onAction="#handleNewMovieGenre" prefWidth="180.0">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
             </HBox>
          </children>
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
          <padding>
-            <Insets top="30.0" />
+            <Insets top="15.0" />
          </padding>
       </VBox>
    </center>
