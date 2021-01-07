@@ -4,6 +4,7 @@ import PMC.be.Genre;
 import PMC.be.Movie;
 import PMC.dal.GenreDAO;
 import PMC.dal.MovieDAO;
+import javafx.collections.ObservableList;
 
 import java.awt.*;
 import java.io.File;

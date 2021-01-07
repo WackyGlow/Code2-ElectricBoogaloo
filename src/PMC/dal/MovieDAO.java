@@ -1,6 +1,7 @@
 package PMC.dal;
 
 import PMC.be.Movie;
+import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.*;
@@ -16,7 +17,8 @@ public class MovieDAO {
     }
 
     public List<Movie> getAllMovies() throws IOException {
-        ArrayList<Movie> allMovies = new ArrayList<>();
+        ArrayList<Movie> allMovies = new ArrayList<>(){
+        };
 
         try (Connection connection = connectionPool.checkOut()) {
             String sql = "SELECT * FROM Movie;";

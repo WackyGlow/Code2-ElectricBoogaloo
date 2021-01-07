@@ -1,6 +1,8 @@
 package PMC.gui;
 
+import PMC.be.Genre;
 import PMC.be.Movie;
+import PMC.bll.MovieManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,29 +24,33 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.EventObject;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+
     @FXML
-    public TableView genreList;
+    public TableView<Genre> genreList;
     @FXML
-    public TableColumn genreNameColumn;
+    public TableColumn<Genre, String> genreNameColumn;
     @FXML
-    public TableColumn genreMoviesColumn;
+    public TableColumn<Genre, Integer> genreMoviesColumn;
+
+
     @FXML
     public TableView<Movie> movieList;
     @FXML
-    public TableColumn<String, Movie> movieNameColumn;
+    public TableColumn<Movie, String> movieNameColumn;
     @FXML
-    public TableColumn<Float,Movie> movieImdbColumn;
+    public TableColumn<Movie, Integer> movieImdbColumn;
     @FXML
-    public TableColumn<Float,Movie> movieRatingColumn;
+    public TableColumn<Movie, Integer> movieRatingColumn;
     @FXML
-    public TableColumn<String,Movie> lastViewedColumn;
+    public TableColumn<Movie, String> lastViewedColumn;
+
+
     @FXML
     public Button createGenre;
     @FXML
@@ -57,21 +63,37 @@ public class Controller implements Initializable {
     public Button deleteMovie;
     @FXML
     public Button editMovie;
-    private ObservableList observableListMovies;
+
+    private MovieManager movieManager;
+    private ObservableList<Movie> movies;
     private MovieModel movieModel;
     private Movie selectedMovie;
 
     public Controller() throws IOException {
         movieModel = new MovieModel();
-        movieList = new TableView<>();
-
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        try {
+            initMovieTable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void initMovieTable() throws IOException {
+        movies = movieModel.getAllMovies();
+        if (movies == null)
+            throw new RuntimeException("Error retrieving movies from Database");
+        movieNameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        movieImdbColumn.setCellValueFactory(cellData -> cellData.getValue().imdbRatingProperty());
+        movieRatingColumn.setCellValueFactory(cellData -> cellData.getValue().ratingProperty());
+        lastViewedColumn.setCellValueFactory(cellData -> cellData.getValue().lastWatchedProperty());
+
+        movieList.setItems(movies);
 
     }
-
 
 
     public void handleCreateGenre(ActionEvent actionEvent) {

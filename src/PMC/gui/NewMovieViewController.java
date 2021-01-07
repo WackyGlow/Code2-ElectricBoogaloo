@@ -22,7 +22,6 @@ public class NewMovieViewController implements Initializable {
     public DatePicker lastViewed;
     private MovieModel movieModel;
 
-
     @FXML
     public Button newMovieCancel;
     @FXML
@@ -56,7 +55,13 @@ public class NewMovieViewController implements Initializable {
 
     public void handleNewMovieCreate(ActionEvent actionEvent) {
         try {
-            movieModel.createMovie(newMovieName.getText(),Integer.parseInt(newMovieImdbRating.getText()), Integer.parseInt(newMoviePersonalRating.getText()),newMovieFilepath.getText(),lastViewed.getValue().format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
+            movieModel.createMovie(newMovieName.getText(),
+                    Integer.parseInt(newMovieImdbRating.getText()),
+                    Integer.parseInt(newMoviePersonalRating.getText()),
+                    newMovieFilepath.getText(),
+                    lastViewed.getValue().format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
+            Stage stage = (Stage) newMovieCreate.getScene().getWindow();
+            stage.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
