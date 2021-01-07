@@ -3,14 +3,20 @@ package PMC.gui;
 import PMC.be.Movie;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class NewMovieViewController {
+public class NewMovieViewController implements Initializable {
+
+    private MovieModel movieModel;
+
 
     @FXML
     public Button newMovieCancel;
@@ -29,6 +35,8 @@ public class NewMovieViewController {
 
     private File selectedFile = null;
 
+
+
     public void handleFilePath(ActionEvent actionEvent) {
         FileChooser fc = new FileChooser();
         fc.setTitle("Select the movie...");
@@ -42,11 +50,16 @@ public class NewMovieViewController {
     }
 
     public void handleNewMovieCreate(ActionEvent actionEvent) {
-
+        //movieModel.createMovie(newMovieName.getText(),newMovieImdbRating.getText(),newMoviePersonalRating.getText(),newMovieFilepath,);
     }
 
     public void handleNewMovieCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) newMovieCancel.getScene().getWindow();
         stage.close();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        movieModel = new MovieModel();
     }
 }
