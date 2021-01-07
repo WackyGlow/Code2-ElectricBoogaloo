@@ -11,8 +11,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableNumberValue;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -29,15 +36,15 @@ public class Controller implements Initializable {
     @FXML
     public TableColumn genreMoviesColumn;
     @FXML
-    public TableView movieList;
+    public TableView<Movie> movieList;
     @FXML
-    public TableColumn movieNameColumn;
+    public TableColumn<String, Movie> movieNameColumn;
     @FXML
-    public TableColumn movieImdbColumn;
+    public TableColumn<Float,Movie> movieImdbColumn;
     @FXML
-    public TableColumn movieRatingColumn;
+    public TableColumn<Float,Movie> movieRatingColumn;
     @FXML
-    public TableColumn lastViewedColumn;
+    public TableColumn<String,Movie> lastViewedColumn;
     @FXML
     public Button createGenre;
     @FXML
@@ -50,6 +57,15 @@ public class Controller implements Initializable {
     public Button deleteMovie;
     @FXML
     public Button editMovie;
+    private ObservableList observableListMovies;
+    private MovieModel movieModel;
+    private Movie selectedMovie;
+
+    public Controller() throws IOException {
+        movieModel = new MovieModel();
+        movieList = new TableView<>();
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -57,7 +73,6 @@ public class Controller implements Initializable {
     }
 
 
-    private final ObservableList<Movie> allMovies = FXCollections.observableArrayList();
 
     public void handleCreateGenre(ActionEvent actionEvent) {
         try {

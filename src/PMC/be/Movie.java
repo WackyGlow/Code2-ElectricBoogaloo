@@ -1,26 +1,27 @@
 package PMC.be;
 
-import java.io.File;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Movie {
-    private String name;
-    private float imdbRating;
-    private float rating;
+    private StringProperty name;
+    private int imdbRating;
+    private int rating;
     private String filePath;
-    private String lastWatched;
+    private StringProperty lastWatched;
     private int id;
 
-public Movie(String name,float imdbRating,float rating,String filePath,String lastWatched, int id){
-    this.name = name;
+public Movie(String name, int imdbRating, int rating, String filePath, String lastWatched, int id){
+    this.name = new SimpleStringProperty(name);
     this.filePath = filePath;
     this.id = id;
     this.imdbRating = imdbRating;
     this.rating = rating;
-    this.lastWatched = lastWatched;
+    this.lastWatched = new SimpleStringProperty(lastWatched);
 }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public float getImdbRating() {
@@ -36,7 +37,7 @@ public Movie(String name,float imdbRating,float rating,String filePath,String la
     }
 
     public String getLastWatched() {
-        return lastWatched;
+        return lastWatched.get();
     }
 
     public int getId() {
@@ -44,14 +45,14 @@ public Movie(String name,float imdbRating,float rating,String filePath,String la
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
-    public void setImdbRating(float imdbRating) {
+    public void setImdbRating(int imdbRating) {
         this.imdbRating = imdbRating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
@@ -60,7 +61,7 @@ public Movie(String name,float imdbRating,float rating,String filePath,String la
     }
 
     public void setLastWatched(String lastWatched) {
-        this.lastWatched = lastWatched;
+        this.lastWatched.set(lastWatched);
     }
 
     public void setId(int id) {

@@ -36,18 +36,18 @@ public class GenreDAO {
         return allGenres;
     }
 
-    public Genre createGenre(String title) throws SQLException {
-        String sql = "INSERT INTO Genre (title) VALUES(?);";
+    public Genre createGenre(String name) throws SQLException {
+        String sql = "INSERT INTO Genre (name) VALUES(?);";
         Connection con = connectionPool.checkOut();
         try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            st.setString(1, title);
+            st.setString(1, name);
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
             int id = 0;
             if (rs.next()){
                 id = rs.getInt(1);
             }
-            Genre genre = new Genre(id, title);
+            Genre genre = new Genre(id, name);
             return genre;
         } catch (SQLException ex) {
             throw new SQLException("Could not create genre", ex);

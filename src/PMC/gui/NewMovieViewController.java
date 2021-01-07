@@ -5,16 +5,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class NewMovieViewController implements Initializable {
 
+    public DatePicker lastViewed;
     private MovieModel movieModel;
 
 
@@ -50,7 +55,11 @@ public class NewMovieViewController implements Initializable {
     }
 
     public void handleNewMovieCreate(ActionEvent actionEvent) {
-        //movieModel.createMovie(newMovieName.getText(),newMovieImdbRating.getText(),newMoviePersonalRating.getText(),newMovieFilepath,);
+        try {
+            movieModel.createMovie(newMovieName.getText(),Integer.parseInt(newMovieImdbRating.getText()), Integer.parseInt(newMoviePersonalRating.getText()),newMovieFilepath.getText(),lastViewed.getValue().format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void handleNewMovieCancel(ActionEvent actionEvent) {
@@ -60,6 +69,13 @@ public class NewMovieViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        movieModel = new MovieModel();
+        try {
+            movieModel = new MovieModel();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleLastViewed(ActionEvent actionEvent) {
     }
 }

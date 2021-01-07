@@ -26,8 +26,8 @@ public class MovieDAO {
                 while (resultSet.next()) {
                     int id = resultSet.getInt("Id");
                     String name = resultSet.getString("Title");
-                    Float rating = resultSet.getFloat("Rating");
-                    Float userRating = resultSet.getFloat("Userrating");
+                    int rating = resultSet.getInt("Rating");
+                    int userRating = resultSet.getInt("Userrating");
                     String filepath = resultSet.getString("Filepath");
                     String lastView = resultSet.getString("Lastview");
                     Movie movie = new Movie(name,rating,userRating,filepath,lastView,id);
@@ -40,22 +40,22 @@ public class MovieDAO {
         return allMovies;
     }
 
-    public Movie createMovie(String title, float imdbRating, float rating, String filepath, String lastWatched) throws SQLException {
-        String sql = "INSERT INTO Movie (title, imdbrating, rating, filepath, lastviewed) VALUES(?,?,?,?);";
+    public Movie createMovie(String title, int rating, int userrating, String filepath, String lastview) throws SQLException {
+        String sql = "INSERT INTO Movie (title, rating, userrating, filepath, lastview) VALUES(?,?,?,?,?);";
         Connection con = connectionPool.checkOut();
         try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1, title);
-            st.setFloat(2,imdbRating);
-            st.setFloat(3,rating);
+            st.setFloat(2,rating);
+            st.setFloat(3,userrating);
             st.setString(4,filepath);
-            st.setString(5,lastWatched);
+            st.setString(5,lastview);
             st.executeUpdate();
             ResultSet rs = st.getGeneratedKeys();
             int id = 0;
             if (rs.next()){
                 id = rs.getInt(1);
             }
-            Movie movie = new Movie(title,imdbRating,rating,filepath,lastWatched,id);
+            Movie movie = new Movie(title,rating,userrating,filepath,lastview,id);
             return movie;
         } catch (SQLException ex) {
             throw new SQLException("Could not create movie", ex);
