@@ -10,17 +10,17 @@ import java.sql.SQLException;
 
 public class GenreModel {
     private MovieManager movieManager;
-    private ObservableList<Genre> allgenres = FXCollections.observableArrayList();
+    private ObservableList<Genre> allGenres = FXCollections.observableArrayList();
 
 
     public GenreModel() throws IOException {
         movieManager = new MovieManager();
     }
 
-    public ObservableList<Genre> getAllMovies() throws IOException {
-        allgenres = FXCollections.observableArrayList();
-        allgenres.addAll(movieManager.getAllGenres());
-        return allgenres;
+    public ObservableList<Genre> getAllGenres() throws IOException {
+        allGenres = FXCollections.observableArrayList();
+        allGenres.addAll(movieManager.getAllGenres());
+        return allGenres;
     }
 
 

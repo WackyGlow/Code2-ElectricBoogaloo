@@ -66,11 +66,14 @@ public class Controller implements Initializable {
 
     private MovieManager movieManager;
     private ObservableList<Movie> movies;
+    private ObservableList<Genre> genres;
     private MovieModel movieModel;
+    private GenreModel genreModel;
     private Movie selectedMovie;
 
     public Controller() throws IOException {
         movieModel = new MovieModel();
+        genreModel = new GenreModel();
     }
 
     @Override
@@ -78,6 +81,7 @@ public class Controller implements Initializable {
     {
         try {
             initMovieTable();
+            initGenreTable();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,6 +99,14 @@ public class Controller implements Initializable {
 
     }
 
+    public void initGenreTable() throws IOException {
+        genres = genreModel.getAllGenres();
+        if (genres == null)
+            throw new RuntimeException("Error retrieving genres from Database");
+        genreNameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        genreList.setItems(genres);
+
+    }
 
     public void handleCreateGenre(ActionEvent actionEvent) {
         try {

@@ -90,7 +90,7 @@
                         <Insets right="10.0" top="3.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="newMovieFilepath" maxWidth="150.0" minWidth="151.0">
+                  <TextField fx:id="newMovieFilepath" editable="false" maxWidth="150.0" minWidth="151.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -112,7 +112,7 @@
                         <Insets right="10.0" top="3.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox minWidth="180.0" prefWidth="180.0">
+                  <ComboBox fx:id="newMovieGenre" minWidth="180.0" onAction="#handleNewMovieGenre" prefWidth="180.0">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>

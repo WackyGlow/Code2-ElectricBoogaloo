@@ -30,7 +30,6 @@ public Movie(String name, int imdbRating, int rating, String filePath, String la
         return name;
     }
 
-
     public ObjectProperty<Integer> getImdbRating() {
         return imdbRating;
     }
@@ -41,7 +40,6 @@ public Movie(String name, int imdbRating, int rating, String filePath, String la
         return imdbRating;
     }
 
-
     public ObjectProperty<Integer> getRating() {
         return rating;
     }
@@ -51,7 +49,6 @@ public Movie(String name, int imdbRating, int rating, String filePath, String la
     public ObservableValue<Integer> ratingProperty() {
         return rating;
     }
-
 
     public String getFilePath() {
         return filePath;
@@ -69,7 +66,6 @@ public Movie(String name, int imdbRating, int rating, String filePath, String la
     public ObservableValue<String> lastWatchedProperty() {
         return lastWatched;
     }
-
 
     public int getId() {
         return id;
