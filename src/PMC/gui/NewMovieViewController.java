@@ -1,6 +1,7 @@
 package PMC.gui;
 
 import PMC.be.Movie;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +22,6 @@ import java.util.ResourceBundle;
 public class NewMovieViewController implements Initializable {
 
     private MovieModel movieModel;
-    private Controller controller;
 
     @FXML
     public DatePicker lastViewed;
@@ -44,6 +44,7 @@ public class NewMovieViewController implements Initializable {
 
     private File selectedFile = null;
 
+
     public void handleFilePath(ActionEvent actionEvent) {
         FileChooser fc = new FileChooser();
         fc.setTitle("Select the movie...");
@@ -56,7 +57,7 @@ public class NewMovieViewController implements Initializable {
         }
     }
 
-    public void handleNewMovieCreate(ActionEvent actionEvent) {
+    public void handleNewMovieCreate(ActionEvent actionEvent) throws IOException {
         try {
             movieModel.createMovie(newMovieName.getText(),
                     Integer.parseInt(newMovieImdbRating.getText()),

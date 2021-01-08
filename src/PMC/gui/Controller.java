@@ -158,15 +158,24 @@ public class Controller implements Initializable {
             try {
                 movieManager.deleteMovie(selectedMovie);
                 movies.remove(selectedMovie);
+                movieList.getItems().clear();
+                movieList.getItems().addAll(movies);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
         }
     }
 
-    public void handleEditMovie(ActionEvent actionEvent) {
+    public void handleEditMovie(ActionEvent actionEvent) throws IOException {
+        movies = movieModel.getAllMovies();
+        movieList.getItems().clear();
+        movieList.getItems().addAll(movies);
     }
-    public void refreshTables() {
-        movieList.refresh();
-    }
+
+    //public void handleRefreshTables(ActionEvent actionEvent) throws IOException {
+    //    movies = movieModel.getAllMovies();
+    //    movieList.getItems().clear();
+    //    movieList.getItems().addAll(movies);
+    //}
+
 }
