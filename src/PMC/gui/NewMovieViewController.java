@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 public class NewMovieViewController implements Initializable {
 
     private MovieModel movieModel;
+    private Controller controller;
 
     @FXML
     public DatePicker lastViewed;
@@ -43,8 +44,6 @@ public class NewMovieViewController implements Initializable {
 
     private File selectedFile = null;
 
-
-
     public void handleFilePath(ActionEvent actionEvent) {
         FileChooser fc = new FileChooser();
         fc.setTitle("Select the movie...");
@@ -66,6 +65,7 @@ public class NewMovieViewController implements Initializable {
                     lastViewed.getValue().format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
             Stage stage = (Stage) newMovieCreate.getScene().getWindow();
             stage.close();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

@@ -24,6 +24,8 @@ public class NewGenreViewController implements Initializable {
 
     public void handleNewGenreCreate(ActionEvent actionEvent) throws SQLException {
         genreModel.createGenre(newGenreName.getText());
+        Stage stage = (Stage) newGenreCreate.getScene().getWindow();
+        stage.close();
     }
 
     public void handleNewGenreCancel(ActionEvent actionEvent) {

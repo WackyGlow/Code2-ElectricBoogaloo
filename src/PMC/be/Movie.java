@@ -74,9 +74,4 @@ public Movie(String name, int imdbRating, int rating, String filePath, String la
         this.id = id;
     }
 
-
-
-
-
-
 }

@@ -26,6 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.EventObject;
 import java.util.ResourceBundle;
 
@@ -74,6 +75,8 @@ public class Controller implements Initializable {
     public Controller() throws IOException {
         movieModel = new MovieModel();
         genreModel = new GenreModel();
+        movieManager = new MovieManager();
+        movieList = new TableView<>();
     }
 
     @Override
@@ -96,7 +99,6 @@ public class Controller implements Initializable {
         lastViewedColumn.setCellValueFactory(cellData -> cellData.getValue().lastWatchedProperty());
 
         movieList.setItems(movies);
-
     }
 
     public void initGenreTable() throws IOException {
@@ -150,11 +152,21 @@ public class Controller implements Initializable {
         }
     }
 
-    public void handleDeleteMovie(ActionEvent actionEvent) {
+    public void handleDeleteMovie(ActionEvent actionEvent) throws SQLException {
+        selectedMovie = movieList.getSelectionModel().getSelectedItem();
+        if(selectedMovie != null) {
+            try {
+                movieManager.deleteMovie(selectedMovie);
+                movies.remove(selectedMovie);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
     }
 
     public void handleEditMovie(ActionEvent actionEvent) {
     }
-
-
+    public void refreshTables() {
+        movieList.refresh();
+    }
 }

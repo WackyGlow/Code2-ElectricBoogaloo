@@ -42,7 +42,10 @@ public class MovieManager {
 
     public Movie createMovie(String title, int imdb, int rating, String filepath, String lastwatched) throws SQLException {
         return movieDAO.createMovie(title,imdb,rating,filepath,lastwatched);
-}
+    }
+    public void deleteMovie(Movie selectedMovie) throws SQLException {
+        movieDAO.deleteMovie(selectedMovie);
+    }
 
     public Genre createGenre(String name) throws SQLException {
         return genreDAO.createGenre(name);
@@ -55,5 +58,4 @@ public class MovieManager {
     public List<Genre> getAllGenres() throws IOException {
         return genreDAO.getAllGenres();
     }
-
 }

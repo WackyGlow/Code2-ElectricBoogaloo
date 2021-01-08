@@ -65,4 +65,17 @@ public class MovieDAO {
             connectionPool.checkIn(con);
         }
     }
+
+    public void deleteMovie(Movie selectedMovie) throws SQLException {
+        String name = selectedMovie.getName();
+        try (Connection con = connectionPool.checkOut()) {
+            String sql = "SELECT * FROM Movie;";
+            Statement statement = con.createStatement();
+            if (statement.execute(sql)) {
+                PreparedStatement pSql = con.prepareStatement("DELETE FROM Movie WHERE Title=?");
+                pSql.setString(1,name);
+                pSql.execute();
+            }
+        }
+    }
 }
