@@ -21,7 +21,8 @@ public class MovieManager {
         genreDAO = new GenreDAO();
 }
 
-    public void playMovie(String path) throws IOException {
+    public void playMovie(Movie movie) throws IOException {
+        String path = movie.getFilePath();
         File film = new File(path);
         Desktop desktop = Desktop.getDesktop();
         desktop.open(film);
