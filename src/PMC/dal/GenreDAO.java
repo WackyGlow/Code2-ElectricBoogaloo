@@ -55,4 +55,17 @@ public class GenreDAO {
             connectionPool.checkIn(con);
         }
     }
+
+    public void deleteGenre(Genre selectedGenre) throws SQLException {
+        String name = selectedGenre.getName();
+        try (Connection con = connectionPool.checkOut()) {
+            String sql = "SELECT * FROM Genre;";
+            Statement statement = con.createStatement();
+            if (statement.execute(sql)) {
+                PreparedStatement pSql = con.prepareStatement("DELETE FROM Genre WHERE Name=?");
+                pSql.setString(1,name);
+                pSql.execute();
+            }
+        }
+    }
 }

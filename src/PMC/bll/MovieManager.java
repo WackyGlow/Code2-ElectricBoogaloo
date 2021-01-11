@@ -50,6 +50,9 @@ public class MovieManager {
     public Genre createGenre(String name) throws SQLException {
         return genreDAO.createGenre(name);
     }
+    public void deleteGenre(Genre selectedGenre) throws SQLException {
+        genreDAO.deleteGenre(selectedGenre);
+    }
 
     public List<Movie> getAllMovies() throws IOException {
         return movieDAO.getAllMovies();
@@ -58,4 +61,6 @@ public class MovieManager {
     public List<Genre> getAllGenres() throws IOException {
         return genreDAO.getAllGenres();
     }
+
+
 }

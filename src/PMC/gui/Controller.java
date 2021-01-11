@@ -73,12 +73,14 @@ public class Controller implements Initializable {
     private MovieModel movieModel;
     private GenreModel genreModel;
     private Movie selectedMovie;
+    private Genre selectedGenre;
 
     public Controller() throws IOException {
         movieModel = new MovieModel();
         genreModel = new GenreModel();
         movieManager = new MovieManager();
         movieList = new TableView<>();
+        genreList = new TableView<>();
     }
 
     @Override
@@ -130,7 +132,17 @@ public class Controller implements Initializable {
     }
 
     public void handleDeleteGenre(ActionEvent actionEvent) {
-
+        selectedGenre = genreList.getSelectionModel().getSelectedItem();
+        if(selectedGenre != null) {
+            try {
+                movieManager.deleteGenre(selectedGenre);
+                genres.remove(selectedGenre);
+                genreList.getItems().clear();
+                genreList.getItems().addAll(genres);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
     }
 
     public void handleEditGenre(ActionEvent actionEvent) {
@@ -173,9 +185,16 @@ public class Controller implements Initializable {
     }
 
     public void handleRefreshTables(ActionEvent actionEvent) throws IOException {
+
+        //Refreshes the movie list.
         movies = movieModel.getAllMovies();
         movieList.getItems().clear();
         movieList.getItems().addAll(movies);
+
+        //Refreshes the genre list.
+        genres = genreModel.getAllGenres();
+        genreList.getItems().clear();
+        genreList.getItems().addAll(genres);
     }
 
 }
