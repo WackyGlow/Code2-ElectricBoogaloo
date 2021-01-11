@@ -82,6 +82,11 @@
                         <Insets left="20.0" />
                     </HBox.margin>
                 </Label>
+            <Button fx:id="refreshTables" mnemonicParsing="false" onAction="#handleRefreshTables" text="Refresh Tables">
+               <HBox.margin>
+                  <Insets left="243.0" />
+               </HBox.margin>
+            </Button>
             </children>
             <BorderPane.margin>
                 <Insets bottom="5.0" left="20.0" top="20.0" />

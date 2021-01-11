@@ -64,6 +64,8 @@ public class Controller implements Initializable {
     public Button deleteMovie;
     @FXML
     public Button editMovie;
+    @FXML
+    public Button refreshTables;
 
     private MovieManager movieManager;
     private ObservableList<Movie> movies;
@@ -167,15 +169,13 @@ public class Controller implements Initializable {
     }
 
     public void handleEditMovie(ActionEvent actionEvent) throws IOException {
+
+    }
+
+    public void handleRefreshTables(ActionEvent actionEvent) throws IOException {
         movies = movieModel.getAllMovies();
         movieList.getItems().clear();
         movieList.getItems().addAll(movies);
     }
-
-    //public void handleRefreshTables(ActionEvent actionEvent) throws IOException {
-    //    movies = movieModel.getAllMovies();
-    //    movieList.getItems().clear();
-    //    movieList.getItems().addAll(movies);
-    //}
 
 }
