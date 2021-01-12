@@ -13,17 +13,34 @@ public class MovieModel {
     private MovieManager movieManager;
     private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
 
-
+    /**
+     * Implements the MovieManager class.
+     * @throws IOException
+     */
     public MovieModel() throws IOException {
         movieManager = new MovieManager();
     }
 
+    /**
+     * Returns the getAllMovies observable arraylist.
+     * @return
+     * @throws IOException
+     */
     public ObservableList<Movie> getAllMovies() throws IOException {
         allMovies = FXCollections.observableArrayList();
         allMovies.addAll(movieManager.getAllMovies());
         return allMovies;
     }
 
+    /**
+     * Handles the create movie action.
+     * @param name
+     * @param imdb
+     * @param rating
+     * @param filepath
+     * @param lastwatched
+     * @throws SQLException
+     */
     public void createMovie(String name, int imdb, int rating, String filepath, String lastwatched) throws SQLException {
         movieManager.createMovie(name,imdb,rating,filepath,lastwatched);
     }

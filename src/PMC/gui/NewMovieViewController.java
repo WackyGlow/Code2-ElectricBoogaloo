@@ -44,7 +44,10 @@ public class NewMovieViewController implements Initializable {
 
     private File selectedFile = null;
 
-
+    /**
+     * Handles the file path action connected to the GUI.
+     * @param actionEvent
+     */
     public void handleFilePath(ActionEvent actionEvent) {
         FileChooser fc = new FileChooser();
         fc.setTitle("Select the movie...");
@@ -57,6 +60,11 @@ public class NewMovieViewController implements Initializable {
         }
     }
 
+    /**
+     * Handles the NewMovieCreate action connected to the GUI.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void handleNewMovieCreate(ActionEvent actionEvent) throws IOException {
         try {
             movieModel.createMovie(newMovieName.getText(),
@@ -72,11 +80,20 @@ public class NewMovieViewController implements Initializable {
         }
     }
 
+    /**
+     * Handles NewMovieCancel action connected to the movie.
+     * @param actionEvent
+     */
     public void handleNewMovieCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) newMovieCancel.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Initializes the process of creating a new movie within the GUI.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -86,9 +103,17 @@ public class NewMovieViewController implements Initializable {
         }
     }
 
+    /**
+     * Handles the LastViewed action connected to the GUI.
+     * @param actionEvent
+     */
     public void handleLastViewed(ActionEvent actionEvent) {
     }
 
+    /**
+     * Handles the NewMovieGenre action connected to the GUI.
+     * @param actionEvent
+     */
     public void handleNewMovieGenre(ActionEvent actionEvent) {
     }
 }

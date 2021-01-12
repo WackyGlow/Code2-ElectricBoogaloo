@@ -11,10 +11,19 @@ import java.util.List;
 public class GenreDAO {
     private final JDBCConnectionPool connectionPool;
 
+    /**
+     * Implements a connection pool.
+     * @throws IOException
+     */
     public GenreDAO() throws IOException {
         connectionPool = JDBCConnectionPool.getInstance();
     }
 
+    /**
+     * Creates a new arraylist for the genres.
+     * @return
+     * @throws IOException
+     */
     public List<Genre> getAllGenres() throws IOException {
         ArrayList<Genre> allGenres = new ArrayList<>();
 
@@ -36,6 +45,12 @@ public class GenreDAO {
         return allGenres;
     }
 
+    /**
+     * Makes it possible to create a new genre, and sets the parameters of what is considered a "legal" genre.
+     * @param name
+     * @return
+     * @throws SQLException
+     */
     public Genre createGenre(String name) throws SQLException {
         String sql = "INSERT INTO Genre (name) VALUES(?);";
         Connection con = connectionPool.checkOut();
@@ -56,6 +71,11 @@ public class GenreDAO {
         }
     }
 
+    /**
+     * Makes it possible to delete a selected genre.
+     * @param selectedGenre
+     * @throws SQLException
+     */
     public void deleteGenre(Genre selectedGenre) throws SQLException {
         String name = selectedGenre.getName();
         try (Connection con = connectionPool.checkOut()) {

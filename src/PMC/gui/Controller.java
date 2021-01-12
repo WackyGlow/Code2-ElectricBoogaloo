@@ -75,6 +75,11 @@ public class Controller implements Initializable {
     private Movie selectedMovie;
     private Genre selectedGenre;
 
+
+    /**
+     * Implements the classes listed.
+     * @throws IOException
+     */
     public Controller() throws IOException {
         movieModel = new MovieModel();
         genreModel = new GenreModel();
@@ -83,6 +88,11 @@ public class Controller implements Initializable {
         genreList = new TableView<>();
     }
 
+    /**
+     * Calls both the the initialize methods for the respectable tables.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -93,6 +103,11 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Initializes the movie table.
+     * @throws IOException
+     */
     public void initMovieTable() throws IOException {
         movies = movieModel.getAllMovies();
         if (movies == null)
@@ -105,6 +120,10 @@ public class Controller implements Initializable {
         movieList.setItems(movies);
     }
 
+    /**
+     * Initializes the genre table.
+     * @throws IOException
+     */
     public void initGenreTable() throws IOException {
         genres = genreModel.getAllGenres();
         if (genres == null)
@@ -114,6 +133,10 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     * Handles the create genre action.
+     * @param actionEvent
+     */
     public void handleCreateGenre(ActionEvent actionEvent) {
         try {
             Parent genre = FXMLLoader.load(getClass().getResource("NewGenreView.fxml"));
@@ -131,6 +154,10 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     * Handles the delete genre action.
+     * @param actionEvent
+     */
     public void handleDeleteGenre(ActionEvent actionEvent) {
         selectedGenre = genreList.getSelectionModel().getSelectedItem();
         if(selectedGenre != null) {
@@ -145,10 +172,18 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Handles the edit genre action.
+     * @param actionEvent
+     */
     public void handleEditGenre(ActionEvent actionEvent) {
 
     }
 
+    /**
+     * Handles the create Movie action.
+     * @param actionEvent
+     */
     public void handleCreateMovie(ActionEvent actionEvent)
     {
         try {
@@ -166,6 +201,11 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Handles the delete movie action.
+     * @param actionEvent
+     * @throws SQLException
+     */
     public void handleDeleteMovie(ActionEvent actionEvent) throws SQLException {
         selectedMovie = movieList.getSelectionModel().getSelectedItem();
         if(selectedMovie != null) {
@@ -180,10 +220,20 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Handles the edit movie action.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void handleEditMovie(ActionEvent actionEvent) throws IOException {
 
     }
 
+    /**
+     * Handles the refresh tables action.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void handleRefreshTables(ActionEvent actionEvent) throws IOException {
 
         //Refreshes the movie list.

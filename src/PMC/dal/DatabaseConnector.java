@@ -13,6 +13,10 @@ import java.util.Properties;
         private static final String PROP_FILE = "src/pmc/dal/database.settings";
         private SQLServerDataSource ds;
 
+        /**
+         * Constructor for the database connector.
+         * @throws IOException
+         */
         public DatabaseConnector() throws IOException
         {
             Properties databaseProperties = new Properties();
@@ -24,6 +28,11 @@ import java.util.Properties;
             ds.setPassword(databaseProperties.getProperty("Password"));
         }
 
+        /**
+         * Connects the application to our SQL database.
+         * @return
+         * @throws SQLServerException
+         */
         public Connection getConnection() throws SQLServerException
         {
             return ds.getConnection();

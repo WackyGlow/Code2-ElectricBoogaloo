@@ -12,10 +12,19 @@ public class MovieDAO {
 
     private final JDBCConnectionPool connectionPool;
 
+    /**
+     * Implements a connection pool.
+     * @throws IOException
+     */
     public MovieDAO() throws IOException {
         connectionPool = JDBCConnectionPool.getInstance();
     }
 
+    /**
+     * Creates a new arraylist for the movies.
+     * @return
+     * @throws IOException
+     */
     public List<Movie> getAllMovies() throws IOException {
         ArrayList<Movie> allMovies = new ArrayList<>(){
         };
@@ -42,6 +51,16 @@ public class MovieDAO {
         return allMovies;
     }
 
+    /**
+     * Makes it possible to create a new movie, and sets the parameters of whats considered a "legal" movie.
+     * @param title
+     * @param rating
+     * @param userrating
+     * @param filepath
+     * @param lastview
+     * @return
+     * @throws SQLException
+     */
     public Movie createMovie(String title, int rating, int userrating, String filepath, String lastview) throws SQLException {
         String sql = "INSERT INTO Movie (title, rating, userrating, filepath, lastview) VALUES(?,?,?,?,?);";
         Connection con = connectionPool.checkOut();
@@ -66,6 +85,11 @@ public class MovieDAO {
         }
     }
 
+    /**
+     * Makes it possible to delete the selected movie.
+     * @param selectedMovie
+     * @throws SQLException
+     */
     public void deleteMovie(Movie selectedMovie) throws SQLException {
         String name = selectedMovie.getName();
         try (Connection con = connectionPool.checkOut()) {

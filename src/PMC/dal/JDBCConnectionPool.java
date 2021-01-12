@@ -11,13 +11,22 @@ public class JDBCConnectionPool extends ObjectPool<Connection>
     private static JDBCConnectionPool INSTANCE;
     private final DatabaseConnector connectionProvider;
 
-    public synchronized static JDBCConnectionPool getInstance() throws IOException //I make the JDBC Connection Pool a Singleton.
+    /**
+     * Makes the JDBC Connection Pool a Singleton.
+     * @return
+     * @throws IOException
+     */
+    public synchronized static JDBCConnectionPool getInstance() throws IOException
     {
         if(INSTANCE == null)
             INSTANCE = new JDBCConnectionPool();
         return INSTANCE;
     }
 
+    /**
+     * Creates a new database connector.
+     * @throws IOException
+     */
     private JDBCConnectionPool() throws IOException
     {
         connectionProvider = new DatabaseConnector();
@@ -31,7 +40,7 @@ public class JDBCConnectionPool extends ObjectPool<Connection>
             return connectionProvider.getConnection();
         } catch (SQLServerException ex)
         {
-            ex.printStackTrace(); //Perfect exception handling... (NO!)
+            ex.printStackTrace();
             return null;
         }
     }
