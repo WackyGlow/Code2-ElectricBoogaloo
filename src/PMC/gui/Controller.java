@@ -247,4 +247,21 @@ public class Controller implements Initializable {
         genreList.getItems().addAll(genres);
     }
 
+    /**
+     * getter for the observable list of movies
+     * @return
+     */
+    public ObservableList<Movie> getMovieList(){
+        return movies;
+    }
+
+    /**
+     * getter for the observable list of genres
+     * @return
+     */
+    public ObservableList<Genre> getGenreList() {
+        return genres;
+    }
+
+
 }
