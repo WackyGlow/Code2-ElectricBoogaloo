@@ -1,5 +1,6 @@
 package PMC.gui;
 
+import PMC.be.Genre;
 import PMC.be.Movie;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import java.util.ResourceBundle;
 public class NewMovieViewController implements Initializable {
 
     private MovieModel movieModel;
+    private ObservableList<Genre> localGenreList;
 
     @FXML
     public DatePicker lastViewed;
@@ -98,9 +100,12 @@ public class NewMovieViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             movieModel = new MovieModel();
+            Controller cuntroller = new Controller();
+            localGenreList = cuntroller.getGenreList();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     /**
