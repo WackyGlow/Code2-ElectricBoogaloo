@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 public class NewMovieViewController implements Initializable {
 
     private MovieModel movieModel;
+    private GenreModel genreModel;
     private ObservableList<Genre> localGenreList;
 
     @FXML
@@ -98,14 +99,17 @@ public class NewMovieViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         try {
             movieModel = new MovieModel();
-            Controller cuntroller = new Controller();
-            localGenreList = cuntroller.getGenreList();
+            Controller controller = new Controller();
+            localGenreList = controller.getGenreList();
+            localGenreList.toString();
+            newMovieGenre.setItems(localGenreList);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -120,5 +124,7 @@ public class NewMovieViewController implements Initializable {
      * @param actionEvent
      */
     public void handleNewMovieGenre(ActionEvent actionEvent) {
+
     }
+
 }

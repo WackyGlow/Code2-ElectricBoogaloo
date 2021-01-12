@@ -50,6 +50,9 @@ public class Genre {
         return id;
     }
 
-
+    @Override
+    public String toString() {
+        return name.get();
+    }
 
 }

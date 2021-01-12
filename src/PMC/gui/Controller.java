@@ -27,7 +27,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -248,7 +250,7 @@ public class Controller implements Initializable {
     }
 
     /**
-     * getter for the observable list of movies
+     * Getter for the observable list of movies
      * @return
      */
     public ObservableList<Movie> getMovieList(){
@@ -256,12 +258,11 @@ public class Controller implements Initializable {
     }
 
     /**
-     * getter for the observable list of genres
+     * Getter for the observable list of genres
      * @return
      */
-    public ObservableList<Genre> getGenreList() {
+    public ObservableList<Genre> getGenreList() throws IOException {
+        genres = genreModel.getAllGenres();
         return genres;
     }
-
-
 }
