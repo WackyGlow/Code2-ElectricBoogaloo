@@ -27,11 +27,10 @@ public class MovieManager {
 
     /**
      * Makes the application play the selected movie.
-     * @param movie
+     * @param path
      * @throws IOException
      */
-    public void playMovie(Movie movie) throws IOException {
-        String path = movie.getFilePath();
+    public void playMovie(String path) throws IOException {
         File film = new File(path);
         Desktop desktop = Desktop.getDesktop();
         desktop.open(film);
@@ -131,9 +130,5 @@ public class MovieManager {
      */
     public List<Genre> getAllGenres() throws IOException {
         return genreDAO.getAllGenres();
-    }
-
-    public void editMovie(Movie selectedMovie, String title, int rating, int userrating, String filepath, String lastview) throws SQLException {
-        movieDAO.updateMovie(selectedMovie,title,rating,userrating,filepath,lastview);
     }
 }

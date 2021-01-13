@@ -2,9 +2,11 @@ package PMC.gui;
 
 import PMC.be.Genre;
 import PMC.be.Movie;
+import PMC.bll.DateManager;
 import PMC.bll.MovieManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,25 +14,28 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableNumberValue;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class Controller implements Initializable {
 
@@ -38,9 +43,6 @@ public class Controller implements Initializable {
     public TableView<Genre> genreList;
     @FXML
     public TableColumn<Genre, String> genreNameColumn;
-    @FXML
-    public TableColumn<Genre, Integer> genreMoviesColumn;
-
 
     @FXML
     public TableView<Movie> movieList;
@@ -52,7 +54,6 @@ public class Controller implements Initializable {
     public TableColumn<Movie, Integer> movieRatingColumn;
     @FXML
     public TableColumn<Movie, String> lastViewedColumn;
-
 
     @FXML
     public Button createGenre;
@@ -68,6 +69,10 @@ public class Controller implements Initializable {
     public Button editMovie;
     @FXML
     public Button refreshTables;
+    @FXML
+    public TextField filterMovie;
+    @FXML
+    public Button playMovieButton;
 
     private MovieManager movieManager;
     private ObservableList<Movie> movies;
@@ -101,9 +106,13 @@ public class Controller implements Initializable {
         try {
             initMovieTable();
             initGenreTable();
-        } catch (IOException e) {
+            if(compareDate() == true) {
+
+            }
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+
     }
 
     /**
@@ -206,9 +215,8 @@ public class Controller implements Initializable {
     /**
      * Handles the delete movie action.
      * @param actionEvent
-     * @throws SQLException
      */
-    public void handleDeleteMovie(ActionEvent actionEvent) throws SQLException {
+    public void handleDeleteMovie(ActionEvent actionEvent) {
         selectedMovie = movieList.getSelectionModel().getSelectedItem();
         if(selectedMovie != null) {
             try {
@@ -251,7 +259,7 @@ public class Controller implements Initializable {
 
     /**
      * Getter for the observable list of movies
-     * @return
+     * @return movies
      */
     public ObservableList<Movie> getMovieList(){
         return movies;
@@ -259,10 +267,46 @@ public class Controller implements Initializable {
 
     /**
      * Getter for the observable list of genres
-     * @return
+     * @return genres
      */
     public ObservableList<Genre> getGenreList() throws IOException {
         genres = genreModel.getAllGenres();
         return genres;
+    }
+
+    /**
+     * Handles the even that occurs when typing text into the FilterTextList.
+     * @param actionEvent
+     */
+    public void handleFilterMovie(ActionEvent actionEvent){
+    }
+
+    /**
+     * Handles the event that occurs when pressing the play button.
+     * @param actionEvent
+     */
+    public void handlePlayMovieButton(ActionEvent actionEvent) throws IOException {
+        selectedMovie = movieList.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null) {
+            movieManager.playMovie(selectedMovie.getFilePath());
+        }
+    }
+
+    /**
+     * this method is used to check if any movies were last watched over six months ago
+     * @return
+     * @throws ParseException
+     */
+    public boolean compareDate() throws ParseException {
+        DateManager DM = new DateManager();
+        for (Movie movie:movies) {
+            DM.checkDate(movie);
+        }
+        if(DM.getMoviesOverSixMonths() > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

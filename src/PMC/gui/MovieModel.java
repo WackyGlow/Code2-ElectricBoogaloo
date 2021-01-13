@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class MovieModel {
 
@@ -44,9 +45,4 @@ public class MovieModel {
     public void createMovie(String name, int imdb, int rating, String filepath, String lastwatched) throws SQLException {
         movieManager.createMovie(name,imdb,rating,filepath,lastwatched);
     }
-
-    public void updateMovie(Movie selectedMovie, String title, int rating, int userrating, String filepath, String lastview) throws SQLException {
-        movieManager.editMovie(selectedMovie,title,rating,userrating,filepath,lastview);
-    }
-
 }
