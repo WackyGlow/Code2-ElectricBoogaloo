@@ -95,6 +95,10 @@ public class MovieManager {
         movieDAO.deleteMovie(selectedMovie);
     }
 
+    public void updateMovie(Movie movie,String title, int imdb, int rating, String filepath, String lastwatched) throws SQLException {
+        movieDAO.updateMovie(movie, title,imdb,rating, filepath, lastwatched);
+    }
+
     /**
      * Makes it possible ot create a new genre.
      * @param name
