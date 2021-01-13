@@ -1,7 +1,7 @@
 package PMC.dal;
 
+import PMC.be.Genre;
 import PMC.be.Movie;
-import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.*;
@@ -102,4 +102,33 @@ public class MovieDAO {
             }
         }
     }
+
+    public void updateMovie(Movie selectedMovie, String title, int rating, int userrating, String filepath, String lastview) throws SQLException {
+        //String sql = "INSERT INTO Movie (title, rating, userrating, filepath, lastview) VALUES(?,?,?,?,?);";
+        int movieId = selectedMovie.getId();
+        String sql = "UPDATE Movie SET title, rating, userrating, filepath, lastview WHERE Id = movieID;";
+        Connection con = connectionPool.checkOut();
+        try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            st.setString(1, title);
+            st.setFloat(2,rating);
+            st.setFloat(3,userrating);
+            st.setString(4,filepath);
+            st.setString(5,lastview);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            throw new SQLException("Could not update movie", ex);
+        } finally {
+            connectionPool.checkIn(con);
+        }
+    }
+    public void saveLink(Genre g, Movie m) throws SQLException{
+        int movieId = m.getId();
+        int genreId = g.getId();
+        String sql = "INSERT INTO GenreMovie (genreId,movieId) VALUES(?,?);";
+       // preparedStatement = connection.prepareStatement(query);
+       // preparedStatement.setInt(1,g.getId());
+       // preparedStatement.setInt(2,m.getId());
+       // preparedStatement.executeUpdate();
+    }
+
 }

@@ -133,5 +133,7 @@ public class MovieManager {
         return genreDAO.getAllGenres();
     }
 
-
+    public void editMovie(Movie selectedMovie, String title, int rating, int userrating, String filepath, String lastview) throws SQLException {
+        movieDAO.updateMovie(selectedMovie,title,rating,userrating,filepath,lastview);
+    }
 }
