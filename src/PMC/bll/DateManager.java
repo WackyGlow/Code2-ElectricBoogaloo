@@ -9,15 +9,20 @@ import java.util.Date;
 
 public class DateManager {
     private String movieDate;
+    private int moviesOverSixMonths;
+
+    public DateManager() {
+        moviesOverSixMonths = 0;
+    }
 
     /**
      * this method is used to compare the lastWatched date with the date six months ago.
-     * if the movie was last watched over six months ago it will return true, if not the it returns false.
+     * if a movie was watched over six months ago adds 1 to moviesOverSixMonths.
      * @param movie
      * @return
      * @throws ParseException
      */
-    public boolean checkDate(Movie movie) throws ParseException {
+    public void checkDate(Movie movie) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         movieDate = movie.getLastWatched();
         Date watchDate = sdf.parse(movieDate);
@@ -29,11 +34,14 @@ public class DateManager {
 
         Date sixMonthsAgo = calendar.getTime();
         if (sixMonthsAgo.after(watchDate)) {
-            return true;
+            moviesOverSixMonths++;
         }
         else {
-            return false;
+            moviesOverSixMonths = moviesOverSixMonths;
         }
     }
 
+    public int getMoviesOverSixMonths() {
+        return moviesOverSixMonths;
+    }
 }

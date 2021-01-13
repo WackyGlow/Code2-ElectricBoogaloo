@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/javafx-fxml-15-ea+6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javafx-controls-15-ea+6-win.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javafx-media-15-ea+6-win.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javafx-controls-15-ea+6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javafx-graphics-15-ea+6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javafx-base-15-ea+6-win.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javafx-fxml-15-ea+6-win.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javafx-base-15-ea+6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javafx-graphics-15-ea+6-win.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mssql-jdbc-8.4.1.jre14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/javafx-media-15-ea+6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
