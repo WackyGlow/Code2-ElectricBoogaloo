@@ -1,6 +1,7 @@
 package PMC.gui;
 
 import PMC.be.Genre;
+import PMC.be.Movie;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,6 +45,8 @@ public class EditMovieViewController implements Initializable {
     @FXML
     public TextField editMovieName;
 
+    private Movie selectedMovie;
+
     private File selectedFile = null;
 
     /**
@@ -69,7 +72,8 @@ public class EditMovieViewController implements Initializable {
      */
     public void handleEditMovieCreate(ActionEvent actionEvent) throws IOException {
         try{
-            movieModel.createMovie(editMovieName.getText(),
+            selectedMovie = Controller.getSelectedMovie();
+            movieModel.updateMovie(selectedMovie,editMovieName.getText(),
                     Integer.parseInt(editMovieImdbRating.getText()),
                     Integer.parseInt(editMoviePersonalRating.getText()),
                     editMovieFilepath.getText(),
@@ -93,6 +97,7 @@ public class EditMovieViewController implements Initializable {
 
     /**
      * Initializes the process of editing a movie within the GUI.
+     * It sets the values of the selected movie by calling getters from Controller.java
      * @param url
      * @param resourceBundle
      */

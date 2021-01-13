@@ -71,7 +71,7 @@ public class Controller implements Initializable {
     private ObservableList<Genre> genres;
     private MovieModel movieModel;
     private GenreModel genreModel;
-    private Movie selectedMovie;
+    private static Movie selectedMovie;
     private Genre selectedGenre;
 
     private static String editMovieName;
@@ -237,13 +237,13 @@ public class Controller implements Initializable {
         editMovieName = selectedMovie.getName();
         editMovieImdb = selectedMovie.getImdbRating();
         editMovieRating = selectedMovie.getRating();
+        editMovieFilePath = selectedMovie.getFilePath();
 
         // Converts the LastWatched String back to a LocalDate to display in edit window.
         String date = selectedMovie.getLastWatched();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         editMovieLastWatched = LocalDate.parse(date, formatter);
 
-        editMovieFilePath = selectedMovie.getFilePath();
 
         if (selectedMovie != null){
             Parent root = FXMLLoader.load(getClass().getResource("EditMovieView.fxml"));
@@ -275,6 +275,9 @@ public class Controller implements Initializable {
     }
     public static String getEditMovieFilePath() {
         return editMovieFilePath;
+    }
+    public static Movie getSelectedMovie() {
+        return selectedMovie;
     }
 
     /**

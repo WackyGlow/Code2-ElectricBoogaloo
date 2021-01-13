@@ -66,8 +66,8 @@ public class MovieDAO {
         Connection con = connectionPool.checkOut();
         try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1, title);
-            st.setFloat(2,rating);
-            st.setFloat(3,userrating);
+            st.setInt(2,rating);
+            st.setInt(3,userrating);
             st.setString(4,filepath);
             st.setString(5,lastview);
             st.executeUpdate();
@@ -109,9 +109,9 @@ public class MovieDAO {
         String sql = "UPDATE Movie SET title, rating, userrating, filepath, lastview WHERE Id = movieID;";
         Connection con = connectionPool.checkOut();
         try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            st.setString(1, title);
-            st.setFloat(2,rating);
-            st.setFloat(3,userrating);
+            st.setString(1,title);
+            st.setInt(2,rating);
+            st.setInt(3,userrating);
             st.setString(4,filepath);
             st.setString(5,lastview);
             st.executeUpdate();
