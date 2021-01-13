@@ -10,6 +10,13 @@ import java.util.Date;
 public class DateManager {
     private String movieDate;
 
+    /**
+     * this method is used to compare the lastWatched date with the date six months ago.
+     * if the movie was last watched over six months ago it will return true, if not the it returns false.
+     * @param movie
+     * @return
+     * @throws ParseException
+     */
     public boolean checkDate(Movie movie) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         movieDate = movie.getLastWatched();
