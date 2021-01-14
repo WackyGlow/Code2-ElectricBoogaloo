@@ -3,6 +3,7 @@ package PMC.bll;
 import PMC.be.Genre;
 import PMC.be.Movie;
 import PMC.dal.GenreDAO;
+import PMC.dal.GenreMovieDAO;
 import PMC.dal.MovieDAO;
 import PMC.gui.NewMovieViewController;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import java.util.List;
 public class MovieManager {
     private MovieDAO movieDAO;
     private GenreDAO genreDAO;
+    private GenreMovieDAO genreMovieDAO;
 
     /**
      * Implements the genreDAO and the movieDAO classes.
@@ -24,6 +26,7 @@ public class MovieManager {
     public MovieManager() throws IOException {
         movieDAO = new MovieDAO();
         genreDAO = new GenreDAO();
+        genreMovieDAO = new GenreMovieDAO();
 }
 
     /**
@@ -85,6 +88,16 @@ public class MovieManager {
      */
     public Movie createMovie(String title, int imdb, int rating, String filepath, String lastwatched) throws SQLException {
         return movieDAO.createMovie(title,imdb,rating,filepath,lastwatched);
+    }
+
+
+    /**
+     * invokes the method from GenreMovieDAO which links the movie to a genre
+     * @param genre
+     * @param movie
+     */
+    public void LinkGM(Genre genre, Movie movie) throws SQLException {
+        genreMovieDAO.saveLink(genre, movie);
     }
 
     /**

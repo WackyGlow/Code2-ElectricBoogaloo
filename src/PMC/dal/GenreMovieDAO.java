@@ -5,10 +5,7 @@ import PMC.be.GenreMovie;
 import PMC.be.Movie;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,13 +58,13 @@ public class GenreMovieDAO {
 
 
     public void saveLink(Genre g, Movie m) throws SQLException {
-        int movieId = m.getId();
-        int genreId = g.getId();
         String sql = "INSERT INTO GenreMovie (genreId,movieId) VALUES(?,?);";
-        // preparedStatement = connection.prepareStatement(query);
-        // preparedStatement.setInt(1,g.getId());
-        // preparedStatement.setInt(2,m.getId());
-        // preparedStatement.executeUpdate();
+        Connection con = connectionPool.checkOut();
+        try (PreparedStatement preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setInt(1, g.getId());
+            preparedStatement.setInt(2, m.getId());
+            preparedStatement.executeUpdate();
+        }
     }
 
 }
