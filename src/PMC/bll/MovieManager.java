@@ -4,6 +4,7 @@ import PMC.be.Genre;
 import PMC.be.Movie;
 import PMC.dal.GenreDAO;
 import PMC.dal.MovieDAO;
+import PMC.gui.NewMovieViewController;
 import javafx.collections.ObservableList;
 
 import java.awt.*;
@@ -134,5 +135,8 @@ public class MovieManager {
      */
     public List<Genre> getAllGenres() throws IOException {
         return genreDAO.getAllGenres();
+    }
+    public List<Genre> getSelectedGenres(){
+        return NewMovieViewController.getSelectedGenres();
     }
 }

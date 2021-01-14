@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class NewMovieViewController implements Initializable {
@@ -22,6 +23,7 @@ public class NewMovieViewController implements Initializable {
     private MovieModel movieModel;
     private GenreModel genreModel;
     private ObservableList<Genre> localGenreList;
+    private static List<Genre> selectedGenres;
 
     @FXML
     public DatePicker lastViewed;
@@ -72,6 +74,8 @@ public class NewMovieViewController implements Initializable {
                     Integer.parseInt(newMoviePersonalRating.getText()),
                     newMovieFilepath.getText(),
                     lastViewed.getValue().format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
+
+
             Stage stage = (Stage) newMovieCreate.getScene().getWindow();
             stage.close();
 
@@ -103,11 +107,15 @@ public class NewMovieViewController implements Initializable {
             localGenreList = controller.getGenreList();
             newMovieGenre.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             newMovieGenre.setItems(localGenreList);
-            newMovieGenre.getSelectionModel().getSelectedItems();
+            selectedGenres = newMovieGenre.getSelectionModel().getSelectedItems();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<Genre> getSelectedGenres() {
+        return selectedGenres;
     }
 
     /**
