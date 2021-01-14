@@ -30,10 +30,10 @@ public class DateManager {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dato);
-        calendar.add(Calendar.MONTH, -6);
+        calendar.add(Calendar.MONTH, -24);
 
         Date sixMonthsAgo = calendar.getTime();
-        if (watchDate.after(sixMonthsAgo)) {
+        if (sixMonthsAgo.after(watchDate)) {
             moviesOverSixMonths++;
         }
     }

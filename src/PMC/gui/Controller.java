@@ -108,8 +108,8 @@ public class Controller implements Initializable {
             if(compareDate() == true) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Clean up time");
-                alert.setHeaderText("Baobab");
-                alert.setContentText("One or more movies haven't been watched in 6 months. Consider deleting them.");
+                alert.setHeaderText("Old movies");
+                alert.setContentText("One or more low rated movies haven't been watched in 2 years. Consider deleting them.");
                 alert.showAndWait();
             }
         } catch (IOException | ParseException e) {
@@ -365,16 +365,20 @@ public class Controller implements Initializable {
     }
 
     /**
-     * This method is used to check if any movies were last watched over six months ago
+     * This method is used to check if any movies were last watched over six months ago and if the personal rating is 6 or lower.
      * @return
      * @throws ParseException
      */
     public boolean compareDate() throws ParseException {
         DateManager DM = new DateManager();
+        boolean underSixRating = false;
         for (Movie movie:movies) {
             DM.checkDate(movie);
+            if(movie.getRating().getValue() <= 6){
+                underSixRating = true;
+            }
         }
-        if(DM.getMoviesOverSixMonths() > 0){
+        if(DM.getMoviesOverSixMonths() > 0 && underSixRating == true){
             return true;
         }
         else {
