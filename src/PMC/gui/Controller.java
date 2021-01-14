@@ -264,18 +264,43 @@ public class Controller implements Initializable {
     public static String getEditMovieName() {
         return editMovieName;
     }
+
+    /**
+     * Gets the Imdb Rating of the selected movie. This is how to call it from the edit window.
+     * @return editMovieImdb.get()
+     */
     public static Integer getEditMovieImdb() {
         return editMovieImdb.get();
     }
+
+    /**
+     * Gets the personal rating of the selected movie. This is how to call it from the edit window.
+     * @return editMovieRating
+     */
     public static Integer getEditMovieRating() {
         return editMovieRating.get();
     }
+
+    /**
+     * Gets the Last Watched date of the selected movie. This is how to call it from the edit window.
+     * @return editMovieLastWatched
+     */
     public static LocalDate getEditMovieLastWatched() {
         return editMovieLastWatched;
     }
+
+    /**
+     * Gets the name of the selected movie. This is how to call it from the edit window.
+     * @return editMovieFilePath
+     */
     public static String getEditMovieFilePath() {
         return editMovieFilePath;
     }
+
+    /**
+     * Gets the selected movie object. This is how to call it from the edit window.
+     * @return selectedMovie
+     */
     public static Movie getSelectedMovie() {
         return selectedMovie;
     }
