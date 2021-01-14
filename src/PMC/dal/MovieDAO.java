@@ -105,8 +105,9 @@ public class MovieDAO {
 
     public void updateMovie(Movie selectedMovie, String title, int rating, int userrating, String filepath, String lastview) throws SQLException {
         //String sql = "INSERT INTO Movie (title, rating, userrating, filepath, lastview) VALUES(?,?,?,?,?);";
-        int movieId = selectedMovie.getId();
-        String sql = "UPDATE Movie SET title, rating, userrating, filepath, lastview WHERE Id = movieID;";
+        int moveId;
+        moveId = selectedMovie.getId();
+        String sql = "UPDATE Movie SET title, rating, userrating, filepath, lastview WHERE Id = " + moveId + ";";
         Connection con = connectionPool.checkOut();
         try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1, title);
