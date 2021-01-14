@@ -107,7 +107,7 @@ public class MovieDAO {
         //String sql = "INSERT INTO Movie (title, rating, userrating, filepath, lastview) VALUES(?,?,?,?,?);";
         int moveId;
         moveId = selectedMovie.getId();
-        String sql = "UPDATE Movie SET title, rating, userrating, filepath, lastview WHERE Id = " + moveId + ";";
+        String sql = "UPDATE MOVIE SET title = ?, rating = ?, userrating = ?, filepath = ?, lastview = ? WHERE Id =" + moveId + ";";
         Connection con = connectionPool.checkOut();
         try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1,title);
