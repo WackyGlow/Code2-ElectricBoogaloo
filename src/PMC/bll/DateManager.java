@@ -36,8 +36,6 @@ public class DateManager {
         if (watchDate.after(sixMonthsAgo)) {
             moviesOverSixMonths++;
         }
-        System.out.println(sdf.format(sixMonthsAgo));
-        System.out.println(sdf.format(watchDate));
     }
 
     public int getMoviesOverSixMonths() {
