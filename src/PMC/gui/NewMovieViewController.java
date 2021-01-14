@@ -114,7 +114,7 @@ public class NewMovieViewController implements Initializable {
         }
     }
 
-    public static List<Genre> getSelectedGenres() {
+    public static List<Genre> getNewMovieSelectedGenres() {
         return selectedGenres;
     }
 

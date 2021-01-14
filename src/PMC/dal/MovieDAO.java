@@ -2,6 +2,7 @@ package PMC.dal;
 
 import PMC.be.Genre;
 import PMC.be.Movie;
+import PMC.bll.MovieManager;
 
 import java.io.IOException;
 import java.sql.*;
@@ -22,7 +23,7 @@ public class MovieDAO {
 
     /**
      * Creates a new arraylist for the movies.
-     * @return
+     * @return allMovies
      * @throws IOException
      */
     public List<Movie> getAllMovies() throws IOException {
@@ -58,7 +59,7 @@ public class MovieDAO {
      * @param userrating
      * @param filepath
      * @param lastview
-     * @return
+     * @return movie
      * @throws SQLException
      */
     public Movie createMovie(String title, int rating, int userrating, String filepath, String lastview) throws SQLException {
@@ -77,8 +78,15 @@ public class MovieDAO {
                 id = rs.getInt(1);
             }
             Movie movie = new Movie(title,rating,userrating,filepath,lastview,id);
+
+            MovieManager movieManager = new MovieManager();
+            List<Genre> newMovieSelectedGenres = movieManager.getNewMovieSelectedGenres();
+            for(Genre genre : newMovieSelectedGenres){
+                saveLink(genre,movie);
+            }
+
             return movie;
-        } catch (SQLException ex) {
+        } catch (SQLException | IOException ex) {
             throw new SQLException("Could not create movie", ex);
         } finally {
             connectionPool.checkIn(con);
@@ -116,11 +124,35 @@ public class MovieDAO {
             st.setString(4,filepath);
             st.setString(5,lastview);
             st.executeUpdate();
-        } catch (SQLException ex) {
+
+            MovieManager movieManager = new MovieManager();
+            List<Genre> editMovieSelectedGenres = movieManager.getEditMovieSelectedGenres();
+            for(Genre genre : editMovieSelectedGenres){
+                updateLink(genre,selectedMovie);
+            }
+        } catch (SQLException | IOException ex) {
             throw new SQLException("Could not update movie", ex);
         } finally {
             connectionPool.checkIn(con);
         }
     }
 
+    public void saveLink(Genre g, Movie m) throws SQLException {
+        String sql = "INSERT INTO GenreMovie (playlistId,songId) VALUES(?,?);";
+        Connection con = connectionPool.checkOut();
+        try (PreparedStatement preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setInt(1, g.getId());
+            preparedStatement.setInt(2, m.getId());
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public void updateLink(Genre g, Movie m) throws SQLException {
+        String sql = "UPDATE GenreMovie SET playlistId=? WHERE songId= " + m.getId() + ";";
+        Connection con = connectionPool.checkOut();
+        try (PreparedStatement preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setInt(1, g.getId());
+            preparedStatement.executeUpdate();
+        }
+    }
 }

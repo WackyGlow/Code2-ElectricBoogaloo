@@ -57,14 +57,5 @@ public class GenreMovieDAO {
     }
 
 
-    public void saveLink(Genre g, Movie m) throws SQLException {
-        String sql = "INSERT INTO GenreMovie (genreId,movieId) VALUES(?,?);";
-        Connection con = connectionPool.checkOut();
-        try (PreparedStatement preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setInt(1, g.getId());
-            preparedStatement.setInt(2, m.getId());
-            preparedStatement.executeUpdate();
-        }
-    }
 
 }

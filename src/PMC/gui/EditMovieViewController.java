@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class EditMovieViewController implements Initializable {
@@ -22,6 +23,7 @@ public class EditMovieViewController implements Initializable {
     private MovieModel movieModel;
     private GenreModel genreModel;
     private ObservableList<Genre> localGenreList;
+    private static List<Genre> selectedGenres;
 
     @FXML
     public DatePicker lastViewed;
@@ -113,12 +115,14 @@ public class EditMovieViewController implements Initializable {
             editMoviePersonalRating.setText(Controller.getEditMovieRating().toString());
             lastViewed.setValue(Controller.getEditMovieLastWatched());
             editMovieFilepath.setText(Controller.getEditMovieFilePath());
-
-
+            selectedGenres = editMovieGenre.getSelectionModel().getSelectedItems();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static List<Genre> getEditMovieSelectedGenres() {
+        return selectedGenres;
     }
 
     /**

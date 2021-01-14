@@ -5,6 +5,7 @@ import PMC.be.Movie;
 import PMC.dal.GenreDAO;
 import PMC.dal.GenreMovieDAO;
 import PMC.dal.MovieDAO;
+import PMC.gui.EditMovieViewController;
 import PMC.gui.NewMovieViewController;
 import javafx.collections.ObservableList;
 
@@ -90,16 +91,6 @@ public class MovieManager {
         return movieDAO.createMovie(title,imdb,rating,filepath,lastwatched);
     }
 
-
-    /**
-     * invokes the method from GenreMovieDAO which links the movie to a genre
-     * @param genre
-     * @param movie
-     */
-    public void LinkGM(Genre genre, Movie movie) throws SQLException {
-        genreMovieDAO.saveLink(genre, movie);
-    }
-
     /**
      * Makes it possible to delete the selected movie.
      * @param selectedMovie
@@ -149,7 +140,10 @@ public class MovieManager {
     public List<Genre> getAllGenres() throws IOException {
         return genreDAO.getAllGenres();
     }
-    public List<Genre> getSelectedGenres(){
-        return NewMovieViewController.getSelectedGenres();
+    public List<Genre> getNewMovieSelectedGenres(){
+        return NewMovieViewController.getNewMovieSelectedGenres();
+    }
+    public List<Genre> getEditMovieSelectedGenres(){
+        return EditMovieViewController.getEditMovieSelectedGenres();
     }
 }
