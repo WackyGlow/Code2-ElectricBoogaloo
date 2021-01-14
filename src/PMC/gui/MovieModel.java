@@ -45,4 +45,8 @@ public class MovieModel {
     public void createMovie(String name, int imdb, int rating, String filepath, String lastwatched) throws SQLException {
         movieManager.createMovie(name,imdb,rating,filepath,lastwatched);
     }
+
+    public void updateMovie(Movie movie, String name, int imdb, int rating, String filepath, String lastwatched) throws SQLException {
+        movieManager.updateMovie(movie,name,imdb,rating,filepath,lastwatched);
+    }
 }

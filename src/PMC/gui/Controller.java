@@ -4,38 +4,30 @@ import PMC.be.Genre;
 import PMC.be.Movie;
 import PMC.bll.DateManager;
 import PMC.bll.MovieManager;
-import javafx.collections.FXCollections;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableNumberValue;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import java.awt.*;
-import java.io.File;
+import javafx.util.converter.LocalDateStringConverter;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 public class Controller implements Initializable {
 
@@ -79,9 +71,14 @@ public class Controller implements Initializable {
     private ObservableList<Genre> genres;
     private MovieModel movieModel;
     private GenreModel genreModel;
-    private Movie selectedMovie;
+    private static Movie selectedMovie;
     private Genre selectedGenre;
 
+    private static String editMovieName;
+    private static ObjectProperty<Integer> editMovieImdb;
+    private static ObjectProperty<Integer> editMovieRating;
+    private static LocalDate editMovieLastWatched;
+    private static String editMovieFilePath;
 
     /**
      * Implements the classes listed.
@@ -110,9 +107,8 @@ public class Controller implements Initializable {
 
             }
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
 
+        }
     }
 
     /**
@@ -191,6 +187,7 @@ public class Controller implements Initializable {
 
     }
 
+
     /**
      * Handles the create Movie action.
      * @param actionEvent
@@ -236,7 +233,76 @@ public class Controller implements Initializable {
      * @throws IOException
      */
     public void handleEditMovie(ActionEvent actionEvent) throws IOException {
+        selectedMovie = movieList.getSelectionModel().getSelectedItem();
+        editMovieName = selectedMovie.getName();
+        editMovieImdb = selectedMovie.getImdbRating();
+        editMovieRating = selectedMovie.getRating();
+        editMovieFilePath = selectedMovie.getFilePath();
 
+        // Converts the LastWatched String back to a LocalDate to display in edit window.
+        String date = selectedMovie.getLastWatched();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        editMovieLastWatched = LocalDate.parse(date, formatter);
+
+
+        if (selectedMovie != null){
+            Parent root = FXMLLoader.load(getClass().getResource("EditMovieView.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Edit Movie");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    /**
+     * Gets the name of the selected movie. This is how to call it from the edit window.
+     * @return editMovieName
+     */
+    public static String getEditMovieName() {
+        return editMovieName;
+    }
+
+    /**
+     * Gets the Imdb Rating of the selected movie. This is how to call it from the edit window.
+     * @return editMovieImdb.get()
+     */
+    public static Integer getEditMovieImdb() {
+        return editMovieImdb.get();
+    }
+
+    /**
+     * Gets the personal rating of the selected movie. This is how to call it from the edit window.
+     * @return editMovieRating
+     */
+    public static Integer getEditMovieRating() {
+        return editMovieRating.get();
+    }
+
+    /**
+     * Gets the Last Watched date of the selected movie. This is how to call it from the edit window.
+     * @return editMovieLastWatched
+     */
+    public static LocalDate getEditMovieLastWatched() {
+        return editMovieLastWatched;
+    }
+
+    /**
+     * Gets the name of the selected movie. This is how to call it from the edit window.
+     * @return editMovieFilePath
+     */
+    public static String getEditMovieFilePath() {
+        return editMovieFilePath;
+    }
+
+    /**
+     * Gets the selected movie object. This is how to call it from the edit window.
+     * @return selectedMovie
+     */
+    public static Movie getSelectedMovie() {
+        return selectedMovie;
     }
 
     /**
