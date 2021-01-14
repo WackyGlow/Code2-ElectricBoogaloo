@@ -18,6 +18,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -32,18 +34,18 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    public TableView<Genre> genreList;
+    private TableView<Genre> genreList;
     @FXML
-    public TableColumn<Genre, String> genreNameColumn;
+    private TableColumn<Genre, String> genreNameColumn;
 
     @FXML
-    public TableView<Movie> movieList;
+    private TableView<Movie> movieList;
     @FXML
-    public TableColumn<Movie, String> movieNameColumn;
+    private TableColumn<Movie, String> movieNameColumn;
     @FXML
-    public TableColumn<Movie, Integer> movieImdbColumn;
+    private TableColumn<Movie, Integer> movieImdbColumn;
     @FXML
-    public TableColumn<Movie, Integer> movieRatingColumn;
+    private TableColumn<Movie, Integer> movieRatingColumn;
     @FXML
     public TableColumn<Movie, String> lastViewedColumn;
 
@@ -104,7 +106,11 @@ public class Controller implements Initializable {
             initMovieTable();
             initGenreTable();
             if(compareDate() == true) {
-
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Clean up time");
+                alert.setHeaderText("Baobab");
+                alert.setContentText("One or more movies haven't been watched in 6 months. Consider deleting them.");
+                alert.showAndWait();
             }
         } catch (IOException | ParseException e) {
 
@@ -186,7 +192,6 @@ public class Controller implements Initializable {
     public void handleEditGenre(ActionEvent actionEvent) {
 
     }
-
 
     /**
      * Handles the create Movie action.
@@ -306,7 +311,7 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Handles the refresh tables action.
+     * Handles the refresh tables action. By clearing the table and getting the data again afterwards.
      * @param actionEvent
      * @throws IOException
      */
@@ -321,6 +326,7 @@ public class Controller implements Initializable {
         genres = genreModel.getAllGenres();
         genreList.getItems().clear();
         genreList.getItems().addAll(genres);
+
     }
 
     /**
@@ -359,7 +365,7 @@ public class Controller implements Initializable {
     }
 
     /**
-     * this method is used to check if any movies were last watched over six months ago
+     * This method is used to check if any movies were last watched over six months ago
      * @return
      * @throws ParseException
      */

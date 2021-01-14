@@ -6,10 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -29,7 +26,7 @@ public class EditMovieViewController implements Initializable {
     @FXML
     public DatePicker lastViewed;
     @FXML
-    public ComboBox editMovieGenre;
+    public ListView<Genre> editMovieGenre;
     @FXML
     public Button editMovieCancel;
     @FXML
@@ -108,12 +105,15 @@ public class EditMovieViewController implements Initializable {
             movieModel = new MovieModel();
             Controller controller = new Controller();
             localGenreList = controller.getGenreList();
+            editMovieGenre.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             editMovieGenre.setItems(localGenreList);
+            editMovieGenre.getSelectionModel().getSelectedItems();
             editMovieName.setText(Controller.getEditMovieName());
             editMovieImdbRating.setText(Controller.getEditMovieImdb().toString());
             editMoviePersonalRating.setText(Controller.getEditMovieRating().toString());
             lastViewed.setValue(Controller.getEditMovieLastWatched());
             editMovieFilepath.setText(Controller.getEditMovieFilePath());
+
 
 
         } catch (IOException e) {

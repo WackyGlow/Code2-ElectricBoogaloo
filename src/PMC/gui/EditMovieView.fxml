@@ -11,9 +11,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="250.0" minWidth="310.0" prefHeight="250.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PMC.gui.EditMovieViewController">
+<?import javafx.scene.control.ListView?>
+<BorderPane minHeight="380.0" minWidth="310.0" prefHeight="250.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PMC.gui.EditMovieViewController">
    <center>
-      <VBox maxHeight="220.0" prefHeight="220.0" prefWidth="310.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="200.0">
                <children>
@@ -105,18 +106,26 @@
                   <Insets bottom="3.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="144.0" prefHeight="30.0" prefWidth="200.0">
+            <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="144.0" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Label text="Genre:">
                      <HBox.margin>
                         <Insets right="10.0" top="3.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="editMovieGenre" minWidth="180.0" onAction="#handleEditMovieGenre" prefWidth="180.0">
+                  <VBox prefHeight="150.0">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
-                  </ComboBox>
+                     <children>
+                        <ListView fx:id="editMovieGenre" maxHeight="180.0" minHeight="160.0" prefHeight="100.0" prefWidth="180.0" />
+                        <Label text="Hold CTRL for multiple selections">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>
@@ -130,10 +139,10 @@
    </center>
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <buttons>
+         <buttons>
           <Button fx:id="editMovieCreate" mnemonicParsing="false" onAction="#handleEditMovieCreate" text="Update" />
             <Button fx:id="editMovieCancel" mnemonicParsing="false" onAction="#handleEditMovieCancel" text="Cancel" />
-        </buttons>
+         </buttons>
          <BorderPane.margin>
             <Insets bottom="5.0" right="20.0" />
          </BorderPane.margin>

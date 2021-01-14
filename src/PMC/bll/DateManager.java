@@ -26,19 +26,18 @@ public class DateManager {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         movieDate = movie.getLastWatched();
         Date watchDate = sdf.parse(movieDate);
-        Date dato= new Date();
+        Date dato = new Date();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dato);
         calendar.add(Calendar.MONTH, -6);
 
         Date sixMonthsAgo = calendar.getTime();
-        if (sixMonthsAgo.after(watchDate)) {
+        if (watchDate.after(sixMonthsAgo)) {
             moviesOverSixMonths++;
         }
-        else {
-            moviesOverSixMonths = moviesOverSixMonths;
-        }
+        System.out.println(sdf.format(sixMonthsAgo));
+        System.out.println(sdf.format(watchDate));
     }
 
     public int getMoviesOverSixMonths() {

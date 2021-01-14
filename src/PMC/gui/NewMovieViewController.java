@@ -6,10 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -29,7 +26,7 @@ public class NewMovieViewController implements Initializable {
     @FXML
     public DatePicker lastViewed;
     @FXML
-    public ComboBox newMovieGenre;
+    public ListView<Genre> newMovieGenre;
     @FXML
     public Button newMovieCancel;
     @FXML
@@ -104,8 +101,9 @@ public class NewMovieViewController implements Initializable {
             movieModel = new MovieModel();
             Controller controller = new Controller();
             localGenreList = controller.getGenreList();
-            localGenreList.toString();
+            newMovieGenre.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             newMovieGenre.setItems(localGenreList);
+            newMovieGenre.getSelectionModel().getSelectedItems();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -118,13 +116,4 @@ public class NewMovieViewController implements Initializable {
      */
     public void handleLastViewed(ActionEvent actionEvent) {
     }
-
-    /**
-     * Handles the NewMovieGenre action connected to the GUI.
-     * @param actionEvent
-     */
-    public void handleNewMovieGenre(ActionEvent actionEvent) {
-
-    }
-
 }
