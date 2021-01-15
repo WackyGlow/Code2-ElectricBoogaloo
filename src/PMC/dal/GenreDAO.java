@@ -2,6 +2,7 @@ package PMC.dal;
 
 import PMC.be.Genre;
 import PMC.be.Movie;
+import PMC.bll.MovieManager;
 
 import java.io.IOException;
 import java.sql.*;
@@ -88,4 +89,24 @@ public class GenreDAO {
             }
         }
     }
+
+    public void editGenre(Genre selectedGenre) throws SQLException {
+        String name = selectedGenre.getName();
+        try (Connection con = connectionPool.checkOut()){
+            // String sql = "UPDATE MOVIE SET title = ?, rating = ?, userrating = ?, filepath = ?, lastview = ? WHERE Id =" + moveId + ";";
+            String sql = "UPDATE Genre SET Name = " + name + ";";
+            Statement statement = con.createStatement();
+
+            try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                st.setString(1,name);
+            } catch (SQLException ex) {
+                throw new SQLException("Could not update movie", ex);
+            } finally {
+                connectionPool.checkIn(con);
+            }
+
+        }
+    }
+
+
 }
