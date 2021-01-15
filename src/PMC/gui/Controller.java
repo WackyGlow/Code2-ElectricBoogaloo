@@ -404,6 +404,19 @@ public class Controller implements Initializable {
         //}
     }
 
+    /**
+     * this method is used to search for movies with a rating above an imputted number.
+     * @param listOfMovies
+     * @param searchedRating
+     * @throws IOException
+     */
+    public void searchForIMDBRatinf (ObservableList<Movie> listOfMovies,int searchedRating) throws IOException {
+        MovieManager MM = new MovieManager();
+        movies = MM.searchIMDBRating(listOfMovies,searchedRating);
+        movieList.getItems().clear();
+        movieList.getItems().addAll(movies);
+    }
+
     /*
 
                __.
