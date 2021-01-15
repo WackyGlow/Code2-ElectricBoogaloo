@@ -32,12 +32,25 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-
+    
+    
+    @FXML
+    public Button selectGenre;
+    
+    @FXML
+    public Button filterMovieNameButton;
+    @FXML
+    public TextField filterMovieNamesText;
+    
+    @FXML
+    public Button filterMovieImdbButton;
+    @FXML
+    public TextField filterMovieImdbText;
+    
     @FXML
     private TableView<Genre> genreList;
     @FXML
     private TableColumn<Genre, String> genreNameColumn;
-
     @FXML
     private TableView<Movie> movieList;
     @FXML
@@ -411,6 +424,7 @@ public class Controller implements Initializable {
      * @throws IOException
      */
     public void searchForIMDBRating (ObservableList<Movie> listOfMovies,int searchedRating) throws IOException {
+        movies = movieModel.getAllMovies();
         MovieManager MM = new MovieManager();
         movies = MM.searchIMDBRating(listOfMovies,searchedRating);
         movieList.getItems().clear();
@@ -424,50 +438,12 @@ public class Controller implements Initializable {
      * @throws IOException
      */
     public void searchForTitle (ObservableList<Movie> listOfMovies,String SearchInput) throws IOException {
+        movies = movieModel.getAllMovies();
         MovieManager MM = new MovieManager();
         movies = MM.searchTitle(listOfMovies,SearchInput);
         movieList.getItems().clear();
         movieList.getItems().addAll(movies);
     }
-
-    /*
-
-               __.
-        .-".'                      .--.            _..._
-      .' .'                     .'    \       .-""  __ ""-.
-     /  /                     .'       : --..:__.-""  ""-. \
-    :  :                     /         ;.d$$    sbp_.-""-:_:
-    ;  :                    : ._       :P .-.   ,"TP
-    :   \                    \  T--...-; : d$b  :d$b
-     \   `.                   \  `..'    ; $ $  ;$ $
-      `.   "-.                 ).        : T$P  :T$P
-        \..---^..             /           `-'    `._`._
-       .'        "-.       .-"                     T$$$b
-      /             "-._.-"               ._        '^' ;
-     :                                    \.`.         /
-     ;                                -.   \`."-._.-'-'
-    :                                 .'\   \ \ \ \
-    ;  ;                             /:  \   \ \ . ;
-   :   :                            ,  ;  `.  `.;  :
-   ;    \        ;                     ;    "-._:  ;
-  :      `.      :                     :         \/
-  ;       /"-.    ;                    :
- :       /    "-. :                  : ;
- :     .'        T-;                 ; ;
- ;    :          ; ;                /  :
- ;    ;          : :              .'    ;
-:    :            ;:         _..-"\     :
-:     \           : ;       /      \     ;
-;    . '.         '-;      /        ;    :
-;  \  ; :           :     :         :    '-.
-'.._L.:-'           :     ;    bug   ;    . `.
-                     ;    :          :  \  ; :
-                     :    '-..       '.._L.:-'
-                      ;     , `.
-                      :   \  ; :
-                      '..__L.:-'
-
-     */
 
     /**
      * Button invokes the selectedGenreFromMovie method.
@@ -483,13 +459,34 @@ public class Controller implements Initializable {
         movieList.getItems().clear();
         movieList.getItems().addAll(movies);
     }
+
+    /**
+     * Doesn't do anything yet.
+     * @param actionEvent
+     */
+    public void handleFilterMovieImdbText(ActionEvent actionEvent) {
+    }
+
+    public void handleFilterMovieImdbButton(ActionEvent actionEvent) throws IOException {
+        String search = filterMovieImdbText.getText();
+        int searchINT = Integer.parseInt(search);
+        searchForIMDBRating(movies, searchINT);
+    }
+
+    /**
+     * Doesn't do anything yet.
+     * @param actionEvent
+     */
+    public void handleFilterMovieNamesText(ActionEvent actionEvent) {
+    }
+
+    public void handleFilterMovieNameButton(ActionEvent actionEvent) throws IOException {
+        String search = filterMovieNamesText.getText();
+        searchForTitle(movies, search);
+    }
 }
 /*
-The Java Dogs Strikes Again
-  __    __
-o-''))_____\\
-"--__/ * * * )
-c_c__/-c____/
+The JavaDog Strikes Again
 
                             ..,,,,,,,,,..
                      .,;%%%%%%%%%%%%%%%%%%%%;,.

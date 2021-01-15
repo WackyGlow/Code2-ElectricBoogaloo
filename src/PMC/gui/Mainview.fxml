@@ -99,26 +99,32 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                             </Label>
-                        <TextField fx:id="filterMovie" minWidth="200.0" onAction="#handleFilterMovie" promptText="Filter..." />
+                        <TextField fx:id="filterMovieImdbText" minWidth="50.0" onAction="#handleFilterMovieImdbText" promptText="Filter IMDB Rating..." />
+                        <Button fx:id="filterMovieImdbButton" minWidth="87.0" mnemonicParsing="false" onAction="#handleFilterMovieImdbButton" text="IMDB Search" />
                      </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0">
+                     <children>
+                        <TextField fx:id="filterMovieNamesText" minWidth="50.0" onAction="#handleFilterMovieNamesText" promptText="Filter Movie Names..." />
+                        <Button fx:id="filterMovieNameButton" mnemonicParsing="false" onAction="#handleFilterMovieNameButton" text="Name Search" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="59.0" top="2.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
             <VBox>
                <HBox.margin>
-                  <Insets left="32.0" />
+                  <Insets left="38.0" />
                </HBox.margin>
                <children>
-                  <HBox>
-                     <children>
-                        <Button fx:id="playMovieButton" mnemonicParsing="false" onAction="#handlePlayMovieButton" text="Play">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button fx:id="refreshTables" mnemonicParsing="false" onAction="#handleRefreshTables" text="Refresh" />
-                     </children>
-                  </HBox>
+                  <Button fx:id="refreshTables" mnemonicParsing="false" onAction="#handleRefreshTables" text="Refresh" />
+                  <Button fx:id="playMovieButton" mnemonicParsing="false" onAction="#handlePlayMovieButton" text="Play">
+                     <VBox.margin>
+                        <Insets left="18.0" top="4.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
             </children>

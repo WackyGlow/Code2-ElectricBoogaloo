@@ -170,7 +170,7 @@ public class MovieManager {
     }
 
     /**
-     * this method uses a for loop to remove movies whos title dose not contain the searched keyword
+     * This method uses a for loop to remove movies whose title dose not contain the searched keyword
      * @param listOfMovies
      * @param searchedTitle
      * @return
