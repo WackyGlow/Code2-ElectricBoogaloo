@@ -90,15 +90,15 @@ public class GenreDAO {
         }
     }
 
-    public void editGenre(Genre selectedGenre) throws SQLException {
-        String name = selectedGenre.getName();
+    public void editGenre(Genre selectedGenre, String newName) throws SQLException {
+        int genreId = selectedGenre.getId();
         try (Connection con = connectionPool.checkOut()){
             // String sql = "UPDATE MOVIE SET title = ?, rating = ?, userrating = ?, filepath = ?, lastview = ? WHERE Id =" + moveId + ";";
-            String sql = "UPDATE Genre SET Name = " + name + ";";
+            String sql = "UPDATE Genre SET Name = " + newName + " WHERE ID = " + genreId +";";
             Statement statement = con.createStatement();
 
             try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                st.setString(1,name);
+                st.setString(1,newName);
             } catch (SQLException ex) {
                 throw new SQLException("Could not update movie", ex);
             } finally {

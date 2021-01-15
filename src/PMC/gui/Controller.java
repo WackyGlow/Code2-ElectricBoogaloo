@@ -334,7 +334,6 @@ public class Controller implements Initializable {
         movies = movieModel.getAllMovies();
         movieList.getItems().clear();
         movieList.getItems().addAll(movies);
-        selectedGenreFromMovie();
         //Refreshes the genre list.
         genres = genreModel.getAllGenres();
         genreList.getItems().clear();

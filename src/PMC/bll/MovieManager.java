@@ -191,8 +191,8 @@ public class MovieManager {
     }
 
 
-    public void editGenre(Genre genre) throws SQLException {
-        genreDAO.editGenre(genre);
+    public void editGenre(Genre genre, String newname) throws SQLException {
+        genreDAO.editGenre(genre, newname);
     }
 
 
