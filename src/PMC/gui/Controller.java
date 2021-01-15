@@ -410,9 +410,22 @@ public class Controller implements Initializable {
      * @param searchedRating
      * @throws IOException
      */
-    public void searchForIMDBRatinf (ObservableList<Movie> listOfMovies,int searchedRating) throws IOException {
+    public void searchForIMDBRating (ObservableList<Movie> listOfMovies,int searchedRating) throws IOException {
         MovieManager MM = new MovieManager();
         movies = MM.searchIMDBRating(listOfMovies,searchedRating);
+        movieList.getItems().clear();
+        movieList.getItems().addAll(movies);
+    }
+
+    /**
+     * This method is used to search for movies whos title containes the searched keyword.
+     * @param listOfMovies
+     * @param SearchInput
+     * @throws IOException
+     */
+    public void searchForTitle (ObservableList<Movie> listOfMovies,String SearchInput) throws IOException {
+        MovieManager MM = new MovieManager();
+        movies = MM.searchTitle(listOfMovies,SearchInput);
         movieList.getItems().clear();
         movieList.getItems().addAll(movies);
     }
