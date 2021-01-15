@@ -424,6 +424,7 @@ public class Controller implements Initializable {
      * @throws IOException
      */
     public void searchForIMDBRating (ObservableList<Movie> listOfMovies,int searchedRating) throws IOException {
+        movies = movieModel.getAllMovies();
         MovieManager MM = new MovieManager();
         movies = MM.searchIMDBRating(listOfMovies,searchedRating);
         movieList.getItems().clear();
@@ -437,50 +438,12 @@ public class Controller implements Initializable {
      * @throws IOException
      */
     public void searchForTitle (ObservableList<Movie> listOfMovies,String SearchInput) throws IOException {
+        movies = movieModel.getAllMovies();
         MovieManager MM = new MovieManager();
         movies = MM.searchTitle(listOfMovies,SearchInput);
         movieList.getItems().clear();
         movieList.getItems().addAll(movies);
     }
-
-    /*
-
-               __.
-        .-".'                      .--.            _..._
-      .' .'                     .'    \       .-""  __ ""-.
-     /  /                     .'       : --..:__.-""  ""-. \
-    :  :                     /         ;.d$$    sbp_.-""-:_:
-    ;  :                    : ._       :P .-.   ,"TP
-    :   \                    \  T--...-; : d$b  :d$b
-     \   `.                   \  `..'    ; $ $  ;$ $
-      `.   "-.                 ).        : T$P  :T$P
-        \..---^..             /           `-'    `._`._
-       .'        "-.       .-"                     T$$$b
-      /             "-._.-"               ._        '^' ;
-     :                                    \.`.         /
-     ;                                -.   \`."-._.-'-'
-    :                                 .'\   \ \ \ \
-    ;  ;                             /:  \   \ \ . ;
-   :   :                            ,  ;  `.  `.;  :
-   ;    \        ;                     ;    "-._:  ;
-  :      `.      :                     :         \/
-  ;       /"-.    ;                    :
- :       /    "-. :                  : ;
- :     .'        T-;                 ; ;
- ;    :          ; ;                /  :
- ;    ;          : :              .'    ;
-:    :            ;:         _..-"\     :
-:     \           : ;       /      \     ;
-;    . '.         '-;      /        ;    :
-;  \  ; :           :     :         :    '-.
-'.._L.:-'           :     ;    bug   ;    . `.
-                     ;    :          :  \  ; :
-                     :    '-..       '.._L.:-'
-                      ;     , `.
-                      :   \  ; :
-                      '..__L.:-'
-
-     */
 
     /**
      * Button invokes the selectedGenreFromMovie method.
@@ -497,6 +460,10 @@ public class Controller implements Initializable {
         movieList.getItems().addAll(movies);
     }
 
+    /**
+     * Doesn't do anything yet.
+     * @param actionEvent
+     */
     public void handleFilterMovieImdbText(ActionEvent actionEvent) {
     }
 
@@ -506,6 +473,10 @@ public class Controller implements Initializable {
         searchForIMDBRating(movies, searchINT);
     }
 
+    /**
+     * Doesn't do anything yet.
+     * @param actionEvent
+     */
     public void handleFilterMovieNamesText(ActionEvent actionEvent) {
     }
 
@@ -515,11 +486,7 @@ public class Controller implements Initializable {
     }
 }
 /*
-The Java Dogs Strikes Again
-  __    __
-o-''))_____\\
-"--__/ * * * )
-c_c__/-c____/
+The JavaDog Strikes Again
 
                             ..,,,,,,,,,..
                      .,;%%%%%%%%%%%%%%%%%%%%;,.
