@@ -39,4 +39,9 @@ public class GenreModel {
     public void createGenre(String name) throws SQLException {
         movieManager.createGenre(name);
     }
+
+    public void updateGenre(Genre genre, String newname) throws SQLException {
+        movieManager.editGenre(genre, newname);
+    }
+
 }

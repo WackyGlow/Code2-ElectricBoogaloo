@@ -17,23 +17,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.converter.LocalDateStringConverter;
-
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.EventObject;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    
-    
+
     @FXML
     public Button selectGenre;
     
@@ -87,7 +79,7 @@ public class Controller implements Initializable {
     private MovieModel movieModel;
     private GenreModel genreModel;
     private static Movie selectedMovie;
-    private Genre selectedGenre;
+    private static Genre selectedGenre;
 
     private static String editMovieName;
     private static ObjectProperty<Integer> editMovieImdb;
@@ -229,10 +221,17 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * Gets the name of the selected genre. This is how to call it from the edit window.
+     * @return editGenreName
+     */
     public static String getEditGenreName() {
         return editGenreName;
     }
-
+    /**
+     * Gets the selected genre object. This is how to call it from the edit window.
+     * @return selectedGenre
+     */
     public static Genre getSelectedGenre() {
         return selectedGenre;
     }
@@ -422,7 +421,7 @@ public class Controller implements Initializable {
                 underSixRating = true;
             }
         }
-        if(DM.getMoviesOverSixMonths() > 0 && underSixRating == true){
+        if(DM.getMoviesOverSixMonths() > 0 && underSixRating){
             return true;
         }
         else {
