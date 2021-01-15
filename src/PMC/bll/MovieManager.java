@@ -169,6 +169,23 @@ public class MovieManager {
         return listOfMovies;
     }
 
+    /**
+     * this method uses a for loop to remove movies whos title dose not contain the searched keyword
+     * @param listOfMovies
+     * @param searchedTitle
+     * @return
+     */
+    public ObservableList<Movie> searchTitle (ObservableList<Movie> listOfMovies,String searchedTitle) {
+        for (Movie movie:listOfMovies) {
+            String TitleOfMovie = movie.getName();
+            boolean Found = TitleOfMovie.contains(searchedTitle);
+            if( Found == false) {
+                listOfMovies.remove(movie);
+            }
+        }
+        return listOfMovies;
+    }
+
 
     public List<Genre> getNewMovieSelectedGenres(){
         return NewMovieViewController.getNewMovieSelectedGenres();
