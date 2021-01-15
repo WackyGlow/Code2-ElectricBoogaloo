@@ -159,13 +159,15 @@ public class MovieManager {
      * @return
      */
     public ObservableList<Movie> searchIMDBRating (ObservableList<Movie> listOfMovies,int searchedRating) {
+        ObservableList<Movie> toRemove = null;
         for (Movie movie:listOfMovies) {
             ObjectProperty<Integer> MoviesRatingOP = movie.getImdbRating();
             int MoviesRating = MoviesRatingOP.getValue();
             if( MoviesRating <= searchedRating) {
-                listOfMovies.remove(movie);
+                toRemove.add(movie);
             }
         }
+        listOfMovies.removeAll(toRemove);
         return listOfMovies;
     }
 
@@ -176,13 +178,15 @@ public class MovieManager {
      * @return
      */
     public ObservableList<Movie> searchTitle (ObservableList<Movie> listOfMovies,String searchedTitle) {
+        ObservableList<Movie> toRemove = null;
         for (Movie movie:listOfMovies) {
             String TitleOfMovie = movie.getName();
             boolean Found = TitleOfMovie.contains(searchedTitle);
             if( Found == false) {
-                listOfMovies.remove(movie);
+                toRemove.add(movie);
             }
         }
+        listOfMovies.removeAll(toRemove);
         return listOfMovies;
     }
 
