@@ -191,6 +191,11 @@ public class MovieManager {
     }
 
 
+    public void editGenre(Genre genre) throws SQLException {
+        genreDAO.editGenre(genre);
+    }
+
+
     public List<Genre> getNewMovieSelectedGenres(){
         return NewMovieViewController.getNewMovieSelectedGenres();
     }
