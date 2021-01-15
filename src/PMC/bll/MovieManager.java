@@ -162,7 +162,7 @@ public class MovieManager {
         for (Movie movie:listOfMovies) {
             ObjectProperty<Integer> MoviesRatingOP = movie.getImdbRating();
             int MoviesRating = MoviesRatingOP.getValue();
-            if( MoviesRating < searchedRating) {
+            if( MoviesRating <= searchedRating) {
                 listOfMovies.remove(movie);
             }
         }
