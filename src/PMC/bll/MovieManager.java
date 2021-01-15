@@ -22,6 +22,7 @@ public class MovieManager {
     private MovieDAO movieDAO;
     private GenreDAO genreDAO;
     private GenreMovieDAO genreMovieDAO;
+
     /**
      * Implements the genreDAO and the movieDAO classes.
      * @throws IOException
@@ -101,6 +102,17 @@ public class MovieManager {
     public void deleteMovie(Movie selectedMovie) throws SQLException {
         movieDAO.deleteMovie(selectedMovie);
     }
+
+    /**
+     * Makes it possible to update the selected movie.
+     * @param movie
+     * @param title
+     * @param imdb
+     * @param rating
+     * @param filepath
+     * @param lastwatched
+     * @throws SQLException
+     */
 
     public void updateMovie(Movie movie,String title, int imdb, int rating, String filepath, String lastwatched) throws SQLException {
         movieDAO.updateMovie(movie, title,imdb,rating, filepath, lastwatched);
@@ -193,7 +205,12 @@ public class MovieManager {
         return listOfMovies;
     }
 
-
+    /**
+     * Makes is possible to edit a selected genre.
+     * @param genre
+     * @param newname
+     * @throws SQLException
+     */
     public void editGenre(Genre genre, String newname) throws SQLException {
         genreDAO.editGenre(genre, newname);
     }

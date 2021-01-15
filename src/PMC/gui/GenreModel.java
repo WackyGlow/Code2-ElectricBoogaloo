@@ -32,7 +32,7 @@ public class GenreModel {
     }
 
     /**
-     * Handles the create genre action.
+     * Takes a new genre name and parses it to the MovieManager.
      * @param name
      * @throws SQLException
      */
@@ -40,6 +40,12 @@ public class GenreModel {
         movieManager.createGenre(name);
     }
 
+    /**
+     * Takes selected genre and parses it to the MovieManager.
+     * @param genre
+     * @param newname
+     * @throws SQLException
+     */
     public void updateGenre(Genre genre, String newname) throws SQLException {
         movieManager.editGenre(genre, newname);
     }

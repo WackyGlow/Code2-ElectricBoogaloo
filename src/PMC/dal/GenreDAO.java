@@ -90,23 +90,23 @@ public class GenreDAO {
         }
     }
 
-    public void editGenre(Genre selectedGenre, String newName) throws SQLException {
+    /**
+     * Takes the given parameters and uses them to update Genre.
+     * @param selectedGenre
+     * @param name
+     * @throws SQLException
+     */
+    public void editGenre(Genre selectedGenre, String name) throws SQLException {
         int genreId = selectedGenre.getId();
-        try (Connection con = connectionPool.checkOut()){
-            // String sql = "UPDATE MOVIE SET title = ?, rating = ?, userrating = ?, filepath = ?, lastview = ? WHERE Id =" + moveId + ";";
-            String sql = "UPDATE Genre SET Name = " + newName + " WHERE ID = " + genreId +";";
-            Statement statement = con.createStatement();
-
-            try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                st.setString(1,newName);
+        Connection con = connectionPool.checkOut();
+        String sql = "UPDATE Genre SET Name =? WHERE ID = " + genreId +";";
+        try (PreparedStatement st = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                st.setString(1,name);
+                st.executeUpdate();
             } catch (SQLException ex) {
                 throw new SQLException("Could not update movie", ex);
             } finally {
                 connectionPool.checkIn(con);
             }
-
-        }
     }
-
-
 }

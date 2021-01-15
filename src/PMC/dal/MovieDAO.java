@@ -111,6 +111,16 @@ public class MovieDAO {
         }
     }
 
+    /**
+     * Takes the given parameters and uses them to edit a selected movie.
+     * @param selectedMovie
+     * @param title
+     * @param rating
+     * @param userrating
+     * @param filepath
+     * @param lastview
+     * @throws SQLException
+     */
     public void updateMovie(Movie selectedMovie, String title, int rating, int userrating, String filepath, String lastview) throws SQLException {
         //String sql = "INSERT INTO Movie (title, rating, userrating, filepath, lastview) VALUES(?,?,?,?,?);";
         int moveId;
@@ -137,6 +147,12 @@ public class MovieDAO {
         }
     }
 
+    /**
+     * Takes a movie and a genre, and links them together in a junction table in the database.
+     * @param g
+     * @param m
+     * @throws SQLException
+     */
     public void saveLink(Genre g, Movie m) throws SQLException {
         String sql = "INSERT INTO GenreMovie (playlistId,songId) VALUES(?,?);";
         Connection con = connectionPool.checkOut();
@@ -147,6 +163,12 @@ public class MovieDAO {
         }
     }
 
+    /**
+     * Updates the link between the movie and the genre in the junction table in the database.
+     * @param g
+     * @param m
+     * @throws SQLException
+     */
     public void updateLink(Genre g, Movie m) throws SQLException {
         String sql = "UPDATE GenreMovie SET playlistId=? WHERE songId= " + m.getId() + ";";
         Connection con = connectionPool.checkOut();

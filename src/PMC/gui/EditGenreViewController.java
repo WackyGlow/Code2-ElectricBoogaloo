@@ -32,7 +32,7 @@ public class EditGenreViewController implements Initializable {
      */
     public void handleEditGenreCreate(ActionEvent actionEvent) throws SQLException {
         selectedGenre = Controller.getSelectedGenre();
-        genreModel.createGenre(editGenreName.getText());
+        genreModel.updateGenre(selectedGenre,editGenreName.getText());
         Stage stage = (Stage) editGenreCreate.getScene().getWindow();
         stage.close();
     }

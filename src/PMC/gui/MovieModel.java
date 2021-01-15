@@ -26,7 +26,7 @@ public class MovieModel {
 
     /**
      * Returns the getAllMovies observable arraylist.
-     * @return
+     * @return allMovies
      * @throws IOException
      */
     public ObservableList<Movie> getAllMovies() throws IOException {
@@ -34,7 +34,11 @@ public class MovieModel {
         allMovies.addAll(movieManager.getAllMovies());
         return allMovies;
     }
-
+    /**
+     * Returns the allGenreMovies observable arraylist.
+     * @return  allGenreMovies
+     * @throws IOException
+     */
     public ObservableList<Movie> getAllMoviesFromGenre(Genre genre) throws IOException {
         allGenreMovies = FXCollections.observableArrayList();
         allGenreMovies.addAll(movieManager.getAllMoviesFromGenre(genre));
@@ -54,6 +58,16 @@ public class MovieModel {
         movieManager.createMovie(name,imdb,rating,filepath,lastwatched);
     }
 
+    /**
+     * Handles the update movie action.
+     * @param movie
+     * @param name
+     * @param imdb
+     * @param rating
+     * @param filepath
+     * @param lastwatched
+     * @throws SQLException
+     */
     public void updateMovie(Movie movie, String name, int imdb, int rating, String filepath, String lastwatched) throws SQLException {
         movieManager.updateMovie(movie,name,imdb,rating,filepath,lastwatched);
     }
