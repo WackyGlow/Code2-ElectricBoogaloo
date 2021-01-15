@@ -14,13 +14,14 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MovieManager {
     private MovieDAO movieDAO;
     private GenreDAO genreDAO;
     private GenreMovieDAO genreMovieDAO;
-
     /**
      * Implements the genreDAO and the movieDAO classes.
      * @throws IOException
@@ -159,15 +160,16 @@ public class MovieManager {
      * @return
      */
     public ObservableList<Movie> searchIMDBRating (ObservableList<Movie> listOfMovies,int searchedRating) {
-        ObservableList<Movie> toRemove = null;
+        List<Movie> toRemove = new ArrayList();
         for (Movie movie:listOfMovies) {
             ObjectProperty<Integer> MoviesRatingOP = movie.getImdbRating();
             int MoviesRating = MoviesRatingOP.getValue();
-            if( MoviesRating <= searchedRating) {
+            if( MoviesRating <= searchedRating -1) {
                 toRemove.add(movie);
             }
         }
         listOfMovies.removeAll(toRemove);
+        toRemove.clear();
         return listOfMovies;
     }
 
@@ -178,15 +180,16 @@ public class MovieManager {
      * @return
      */
     public ObservableList<Movie> searchTitle (ObservableList<Movie> listOfMovies,String searchedTitle) {
-        ObservableList<Movie> toRemove = null;
+        List<Movie> toRemove = new ArrayList();
         for (Movie movie:listOfMovies) {
-            String TitleOfMovie = movie.getName();
-            boolean Found = TitleOfMovie.contains(searchedTitle);
+            String TitleOfMovie = movie.getName().toLowerCase();
+            boolean Found = TitleOfMovie.contains(searchedTitle.toLowerCase());
             if( Found == false) {
                 toRemove.add(movie);
             }
         }
         listOfMovies.removeAll(toRemove);
+        toRemove.clear();
         return listOfMovies;
     }
 

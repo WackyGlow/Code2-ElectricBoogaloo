@@ -95,6 +95,8 @@ public class Controller implements Initializable {
     private static LocalDate editMovieLastWatched;
     private static String editMovieFilePath;
 
+    private static String editGenreName;
+
     /**
      * Implements the classes listed.
      * @throws IOException
@@ -125,6 +127,15 @@ public class Controller implements Initializable {
                 alert.setContentText("One or more low rated movies haven't been watched in 2 years. Consider deleting them.");
                 alert.showAndWait();
             }
+            //Refreshes the movie list.
+            movies = movieModel.getAllMovies();
+            movieList.getItems().clear();
+            movieList.getItems().addAll(movies);
+
+            //Refreshes the genre list.
+            genres = genreModel.getAllGenres();
+            genreList.getItems().clear();
+            genreList.getItems().addAll(genres);
         } catch (IOException | ParseException e) {
 
         }
@@ -202,8 +213,28 @@ public class Controller implements Initializable {
      * Handles the edit genre action.
      * @param actionEvent
      */
-    public void handleEditGenre(ActionEvent actionEvent) {
+    public void handleEditGenre(ActionEvent actionEvent) throws IOException {
+        selectedGenre = genreList.getSelectionModel().getSelectedItem();
+        editGenreName = selectedGenre.getName();
 
+        if (selectedGenre != null){
+            Parent root = FXMLLoader.load(getClass().getResource("EditGenreView.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Edit Movie");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    public static String getEditGenreName() {
+        return editGenreName;
+    }
+
+    public static Genre getSelectedGenre() {
+        return selectedGenre;
     }
 
     /**
@@ -334,7 +365,7 @@ public class Controller implements Initializable {
         movies = movieModel.getAllMovies();
         movieList.getItems().clear();
         movieList.getItems().addAll(movies);
-        selectedGenreFromMovie();
+
         //Refreshes the genre list.
         genres = genreModel.getAllGenres();
         genreList.getItems().clear();
@@ -407,14 +438,6 @@ public class Controller implements Initializable {
     public ObservableList<Movie> selectedGenreFromMovie() throws IOException {
         Genre selectedGenretwo = genreList.getSelectionModel().getSelectedItem();
         return movieModel.getAllMoviesFromGenre(selectedGenretwo);
-
-        //if(genreList.getSelectionModel().getSelectedItem() != null){
-        //    try {
-          //      movies = movieModel.getAllMoviesFromGenre(selectedGenre);
-            //} catch (IOException e) {
-              //  e.printStackTrace();
-            //}
-        //}
     }
 
     /**
@@ -467,6 +490,11 @@ public class Controller implements Initializable {
     public void handleFilterMovieImdbText(ActionEvent actionEvent) {
     }
 
+    /**
+     *
+     * @param actionEvent
+     * @throws IOException
+     */
     public void handleFilterMovieImdbButton(ActionEvent actionEvent) throws IOException {
         String search = filterMovieImdbText.getText();
         int searchINT = Integer.parseInt(search);
