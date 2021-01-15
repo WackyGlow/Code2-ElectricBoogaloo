@@ -321,7 +321,7 @@ public class Controller implements Initializable {
         movies = movieModel.getAllMovies();
         movieList.getItems().clear();
         movieList.getItems().addAll(movies);
-
+        selectedGenreFromMovie();
         //Refreshes the genre list.
         genres = genreModel.getAllGenres();
         genreList.getItems().clear();
@@ -385,4 +385,20 @@ public class Controller implements Initializable {
             return false;
         }
     }
+
+
+    public ObservableList<Movie> selectedGenreFromMovie() throws IOException {
+        Genre selectedGenretwo = genreList.getSelectionModel().getSelectedItem();
+        return movieModel.getAllMoviesFromGenre(selectedGenretwo);
+
+        //if(genreList.getSelectionModel().getSelectedItem() != null){
+        //    try {
+          //      movies = movieModel.getAllMoviesFromGenre(selectedGenre);
+            //} catch (IOException e) {
+              //  e.printStackTrace();
+            //}
+        //}
+    }
+
+
 }

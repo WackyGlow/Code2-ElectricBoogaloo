@@ -140,6 +140,18 @@ public class MovieManager {
     public List<Genre> getAllGenres() throws IOException {
         return genreDAO.getAllGenres();
     }
+
+    /**
+     * Returns the list of movies from a given genre.
+     * @param genre
+     * @return
+     * @throws IOException
+     */
+    public List<Movie> getAllMoviesFromGenre(Genre genre) throws IOException {
+        return genreMovieDAO.getAllMoviesFromGenre(genre);
+    }
+
+
     public List<Genre> getNewMovieSelectedGenres(){
         return NewMovieViewController.getNewMovieSelectedGenres();
     }

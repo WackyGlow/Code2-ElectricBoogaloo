@@ -1,5 +1,6 @@
 package PMC.gui;
 
+import PMC.be.Genre;
 import PMC.be.Movie;
 import PMC.bll.MovieManager;
 import javafx.collections.FXCollections;
@@ -13,6 +14,7 @@ public class MovieModel {
 
     private MovieManager movieManager;
     private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
+    private ObservableList<Movie> allGenreMovies = FXCollections.observableArrayList();
 
     /**
      * Implements the MovieManager class.
@@ -31,6 +33,12 @@ public class MovieModel {
         allMovies = FXCollections.observableArrayList();
         allMovies.addAll(movieManager.getAllMovies());
         return allMovies;
+    }
+
+    public ObservableList<Movie> getAllMoviesFromGenre(Genre genre) throws IOException {
+        allGenreMovies = FXCollections.observableArrayList();
+        allGenreMovies.addAll(movieManager.getAllMoviesFromGenre(genre));
+        return allGenreMovies;
     }
 
     /**
