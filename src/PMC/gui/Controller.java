@@ -500,13 +500,18 @@ public class Controller implements Initializable {
     public void handleFilterMovieImdbText(ActionEvent actionEvent) {
     }
 
-    public void handleFilterMovieImdbButton(ActionEvent actionEvent) {
+    public void handleFilterMovieImdbButton(ActionEvent actionEvent) throws IOException {
+        String search = filterMovieImdbText.getText();
+        int searchINT = Integer.parseInt(search);
+        searchForIMDBRating(movies, searchINT);
     }
 
     public void handleFilterMovieNamesText(ActionEvent actionEvent) {
     }
 
-    public void handleFilterMovieNameButton(ActionEvent actionEvent) {
+    public void handleFilterMovieNameButton(ActionEvent actionEvent) throws IOException {
+        String search = filterMovieNamesText.getText();
+        searchForTitle(movies, search);
     }
 }
 /*
