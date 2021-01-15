@@ -7,6 +7,7 @@ import PMC.dal.GenreMovieDAO;
 import PMC.dal.MovieDAO;
 import PMC.gui.EditMovieViewController;
 import PMC.gui.NewMovieViewController;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
 import java.awt.*;
@@ -149,6 +150,23 @@ public class MovieManager {
      */
     public List<Movie> getAllMoviesFromGenre(Genre genre) throws IOException {
         return genreMovieDAO.getAllMoviesFromGenre(genre);
+    }
+
+    /**
+     * this method uses a for loop to remove movies with a rating under the given number from a list of movies
+     * @param listOfMovies
+     * @param searchedRating
+     * @return
+     */
+    public ObservableList<Movie> searchIMDBRating (ObservableList<Movie> listOfMovies,int searchedRating) {
+        for (Movie movie:listOfMovies) {
+            ObjectProperty<Integer> MoviesRatingOP = movie.getImdbRating();
+            int MoviesRating = MoviesRatingOP.getValue();
+            if( MoviesRating < searchedRating) {
+                listOfMovies.remove(movie);
+            }
+        }
+        return listOfMovies;
     }
 
 
