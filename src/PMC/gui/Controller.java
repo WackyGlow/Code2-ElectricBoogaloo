@@ -32,12 +32,25 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-
+    
+    
+    @FXML
+    public Button selectGenre;
+    
+    @FXML
+    public Button filterMovieNameButton;
+    @FXML
+    public TextField filterMovieNamesText;
+    
+    @FXML
+    public Button filterMovieImdbButton;
+    @FXML
+    public TextField filterMovieImdbText;
+    
     @FXML
     private TableView<Genre> genreList;
     @FXML
     private TableColumn<Genre, String> genreNameColumn;
-
     @FXML
     private TableView<Movie> movieList;
     @FXML
@@ -482,6 +495,18 @@ public class Controller implements Initializable {
         }
         movieList.getItems().clear();
         movieList.getItems().addAll(movies);
+    }
+
+    public void handleFilterMovieImdbText(ActionEvent actionEvent) {
+    }
+
+    public void handleFilterMovieImdbButton(ActionEvent actionEvent) {
+    }
+
+    public void handleFilterMovieNamesText(ActionEvent actionEvent) {
+    }
+
+    public void handleFilterMovieNameButton(ActionEvent actionEvent) {
     }
 }
 /*
